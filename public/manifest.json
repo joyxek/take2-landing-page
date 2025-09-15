@@ -1,0 +1,26 @@
+{
+  "name": "Take2 - Meet People You're Actually Compatible With",
+  "short_name": "Take2",
+  "description": "Take2 is an invite-only dating event where singles in your city meet IRL. Skip the apps, skip the stress - just show up to meet compatible singles.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6EE7B7",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
