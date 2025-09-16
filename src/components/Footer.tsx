@@ -24,38 +24,21 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white py-16">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Email Capture Section */}
+        {/* Event Link Section */}
         <div className="text-center mb-12 pb-12 border-b border-neutral-700">
-          <h3 className="text-3xl font-instrument font-bold mb-4">Stay in the Loop</h3>
+          <h3 className="text-3xl font-instrument font-bold mb-4">Join Our Events</h3>
           <p className="font-carlita text-neutral-300 mb-6 max-w-2xl mx-auto">
-            Get notified when Take2 events are happening in your city. No spam, just real opportunities to meet compatible singles.
+            Check out upcoming Take2 events in your city and RSVP directly.
           </p>
           
-          {isSubmitted ? (
-            <div className="bg-accent-green/20 border border-accent-green/30 rounded-lg p-4 max-w-md mx-auto">
-              <p className="font-carlita text-accent-green font-semibold">
-                ✅ Thanks! We'll keep you updated on events in your area.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-full font-carlita text-neutral-900 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-accent-green"
-                required
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-accent-green text-primary px-6 py-3 rounded-full font-carlita font-bold hover:bg-accent-green/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Joining...' : 'Join List'}
-              </button>
-            </form>
-          )}
+          <a 
+            href="https://lu.ma/taketwo" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-block bg-accent-green text-primary px-8 py-4 rounded-full font-carlita font-bold text-lg hover:bg-accent-green/90 transition-colors shadow-lg"
+          >
+            View Events on Luma
+          </a>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">

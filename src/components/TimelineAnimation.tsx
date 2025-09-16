@@ -309,7 +309,7 @@ export default function TimelineAnimation() {
             }}
           >
             <motion.a
-              href="/apply"
+              href="https://form.typeform.com/to/llHovcds"
               className="relative group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}

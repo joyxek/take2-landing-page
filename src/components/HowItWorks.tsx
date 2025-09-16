@@ -51,10 +51,7 @@ export default function HowItWorks() {
   }, []);
 
   const handleScrollToApplication = () => {
-    const footer = document.querySelector('footer');
-    if (footer) {
-      footer.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.open('https://form.typeform.com/to/llHovcds', '_blank');
   };
 
   // Horizontal swipe gesture handling

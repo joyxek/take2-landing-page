@@ -134,7 +134,7 @@ export default function Hero() {
           transition={{ delay: 1.7, duration: 0.3 }}
         >
           <motion.a
-            href="/apply"
+            href="https://form.typeform.com/to/llHovcds"
             className="inline-block bg-primary text-white px-8 py-4 rounded-full font-carlita font-bold text-lg hover:text-white hover:shadow-[0_10px_30px_rgba(59,91,195,0.4)] transition-all duration-300 shadow-lg"
             whileHover={reducedMotion ? {} : { scale: 1.05 }}
             whileTap={reducedMotion ? {} : { scale: 0.95 }}
