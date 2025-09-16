@@ -45,7 +45,7 @@ body {
 
 /* Update body font */
 body {
-  font-family: var(--font-source-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-mulish), Arial, Helvetica, sans-serif;
 }
 
 /* Disable scroll when modal is open */
@@ -142,10 +142,12 @@ a:hover {
 .bg-accent-blue { background-color: var(--color-accent-blue); }
 
 /* Font Family Utilities */
-.font-instrument { font-family: 'Times New Roman', serif; font-style: italic; }
-.font-carlita { font-family: var(--font-source-sans), sans-serif; }
-.font-handwriting { font-family: var(--font-handwriting); }
-.font-source-sans { font-family: var(--font-source-sans), sans-serif; }
+.font-instrument { font-family: var(--font-philosopher), serif; }
+.font-carlita { font-family: var(--font-mulish), sans-serif; }
+.font-handwriting { font-family: var(--font-lavishly-yours), cursive; }
+.font-philosopher { font-family: var(--font-philosopher), serif; }
+.font-mulish { font-family: var(--font-mulish), sans-serif; }
+.font-lavishly-yours { font-family: var(--font-lavishly-yours), cursive; }
 
 /* Animation Keyframes */
 @keyframes float {
@@ -158,12 +160,56 @@ a:hover {
   50% { box-shadow: 0 0 20px rgba(110, 231, 183, 0.8); }
 }
 
+@keyframes blob {
+  0% { transform: translate3d(0,0,0) scale(1); }
+  33% { transform: translate3d(-3%, -4%, 0) scale(1.05); }
+  66% { transform: translate3d(3%, -2%, 0) scale(0.98); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes blob2 {
+  0% { transform: translate3d(0,0,0) scale(1); }
+  33% { transform: translate3d(2%, -6%, 0) scale(1.03); }
+  66% { transform: translate3d(-2%, -3%, 0) scale(1.01); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes blob3 {
+  0% { transform: translate3d(0,0,0) scale(1); }
+  33% { transform: translate3d(-1%, -2%, 0) scale(1.08); }
+  66% { transform: translate3d(1%, -5%, 0) scale(0.96); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes blob4 {
+  0% { transform: translate3d(0,0,0) scale(1); }
+  33% { transform: translate3d(4%, -3%, 0) scale(1.04); }
+  66% { transform: translate3d(-3%, -6%, 0) scale(0.97); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-blob {
+  animation: blob 18s ease-in-out infinite;
+}
+
+.animate-blob2 {
+  animation: blob2 22s ease-in-out infinite;
+}
+
+.animate-blob3 {
+  animation: blob3 26s ease-in-out infinite;
+}
+
+.animate-blob4 {
+  animation: blob4 20s ease-in-out infinite;
 }
 
 /* Skip to content link for screen readers */

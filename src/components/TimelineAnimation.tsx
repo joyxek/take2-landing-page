@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const datingAppSteps = [
   { 
@@ -17,12 +17,13 @@ const datingAppSteps = [
   { 
     id: 2, 
     title: "Swipe & Browse", 
-    duration: "2-4 weeks", 
+    duration: "up to 8 months", 
     icon: "📱", 
-    description: "Daily swiping through hundreds of profiles",
+    description: "Average American swipes 3,960 times before finding a partner",
     angle: -30,
     progressStart: 0.3,
-    progressEnd: 0.5
+    progressEnd: 0.5,
+    stats: "5.83 hours per week"
   },
   { 
     id: 3, 
@@ -32,7 +33,7 @@ const datingAppSteps = [
     description: "Wait for mutual interest and matches",
     angle: 30,
     progressStart: 0.5,
-    progressEnd: 0.65
+    progressEnd: 0.7
   },
   { 
     id: 4, 
@@ -41,7 +42,7 @@ const datingAppSteps = [
     icon: "💬", 
     description: "Endless texting to build rapport",
     angle: 90,
-    progressStart: 0.65,
+    progressStart: 0.7,
     progressEnd: 0.8,
     hasTyping: true
   },
@@ -53,7 +54,7 @@ const datingAppSteps = [
     description: "Coordinate schedules and meet IRL",
     angle: 150,
     progressStart: 0.8,
-    progressEnd: 0.95
+    progressEnd: 1
   }
 ];
 
@@ -70,11 +71,11 @@ export default function TimelineAnimation() {
   const draggyProgress = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   // Radial progress (0 to 360 degrees)
-  const radialProgress = useTransform(draggyProgress, [0.2, 0.9], [0, 360]);
+  const radialProgress = useTransform(draggyProgress, [0.2, 0.85], [0, 360]);
   
   useEffect(() => {
     const unsubscribe = draggyProgress.onChange((latest) => {
-      if (latest >= 1.0 && !showCTA) {
+      if (latest >= 0.95 && !showCTA) {
         setTimeout(() => setShowCTA(true), 500);
       }
     });
@@ -116,14 +117,14 @@ export default function TimelineAnimation() {
           transition={{ duration: 1, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          6–12 weeks total
+          Could take up to 8 months
         </motion.div>
       </div>
 
       {/* Central Circular Progress */}
-      <div className="flex items-center justify-center min-h-[60vh] relative">
+      <div className="flex items-center justify-center min-h-[60vh] relative px-4 sm:px-0">
         {/* Main Circle */}
-          <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 mx-auto">
+          <div className="relative w-60 h-60 sm:w-80 sm:h-80 md:w-96 md:h-96 mx-auto">
           {/* Background Circle */}
           <div className="absolute inset-0 rounded-full border-4 border-neutral-200" />
           
@@ -157,7 +158,7 @@ export default function TimelineAnimation() {
             <motion.div 
               className="text-center"
               style={{
-                opacity: useTransform(draggyProgress, [0.85, 0.95], [0, 1])
+                opacity: useTransform(draggyProgress, [0.85, 1.0], [0, 1])
               }}
             >
               <div className="text-2xl sm:text-3xl font-instrument font-bold text-red-600 mb-2">
@@ -184,10 +185,25 @@ export default function TimelineAnimation() {
           });
           
           const radius = typeof window !== 'undefined' 
-            ? (window.innerWidth < 640 ? 120 : window.innerWidth < 768 ? 140 : 200)
+            ? (window.innerWidth < 640 ? 80 : window.innerWidth < 768 ? 100 : 200)
             : 200;
-          const x = radius * Math.cos((step.angle * Math.PI) / 180);
-          const y = radius * Math.sin((step.angle * Math.PI) / 180);
+          
+          // Adjust positioning to keep cards on screen
+          let x = radius * Math.cos((step.angle * Math.PI) / 180);
+          let y = radius * Math.sin((step.angle * Math.PI) / 180);
+          
+          // Mobile adjustments to prevent cutoff
+          if (typeof window !== 'undefined' && window.innerWidth < 640) {
+            // Clamp x position to stay within screen bounds
+            const cardWidth = 160;
+            const screenPadding = 20;
+            const maxX = (window.innerWidth / 2) - (cardWidth / 2) - screenPadding;
+            x = Math.max(-maxX, Math.min(maxX, x));
+            
+            // Adjust y to prevent vertical cutoff
+            if (y < -100) y = -80;
+            if (y > 100) y = 80;
+          }
 
           return (
             <motion.div
@@ -195,12 +211,12 @@ export default function TimelineAnimation() {
               className="absolute"
               style={{
                 x: x,
-                y: y,
+                y: y - 50,
                 opacity: shouldShow
               }}
             >
               <motion.div
-                className="bg-white/90 backdrop-blur-sm rounded-2xl p-3 sm:p-4 shadow-xl border border-red-100 min-w-[160px] sm:min-w-[200px] max-w-[180px] sm:max-w-[220px]"
+                className="bg-white/90 backdrop-blur-sm rounded-2xl p-3 sm:p-4 shadow-xl border border-red-100 w-[140px] sm:min-w-[200px] sm:max-w-[220px]"
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ 
@@ -233,6 +249,18 @@ export default function TimelineAnimation() {
                 <p className="text-neutral-600 font-carlita text-[10px] sm:text-xs mt-1 leading-tight">
                   {step.description}
                 </p>
+
+                {/* Additional Stats for Swipe Step */}
+                {step.stats && (
+                  <motion.div 
+                    className="mt-2 text-red-500 font-carlita font-bold text-[9px] sm:text-[10px]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                  >
+                    {step.stats}
+                  </motion.div>
+                )}
 
                 {/* Typing Bubbles for Message Step */}
                 {step.hasTyping && (
@@ -317,11 +345,9 @@ export default function TimelineAnimation() {
                 />
 
                 <div className="relative z-10 text-center">
+                  Skip the wait with Take2.
                   <div className="text-2xl font-instrument font-bold text-primary mb-2">
-                    Skip the Wait
-                  </div>
-                  <div className="text-lg font-carlita text-teal-600 font-semibold">
-                    Apply for an Invite ($10)
+                    Apply now 💌
                   </div>
                 </div>
               </div>

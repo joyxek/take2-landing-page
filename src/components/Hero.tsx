@@ -49,10 +49,25 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white isolate"
       style={{ willChange: 'transform' }}
       {...bind()}
     >
+      {/* Hazy animated gradient background */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55vh] select-none [mask-image:linear-gradient(to_top,black,transparent_60%)]">
+        {/* Primary blue blob */}
+        <div className="absolute left-1/4 bottom-[-10%] aspect-square w-[40rem] rounded-full bg-[radial-gradient(35%_35%_at_50%_50%,#4F46E5_0%,transparent_70%)] blur-3xl opacity-70 animate-blob" />
+        {/* Supporting teal blob */}
+        <div className="absolute right-1/5 bottom-[-15%] aspect-square w-[42rem] rounded-full bg-[radial-gradient(35%_35%_at_50%_50%,#14B8A6_0%,transparent_70%)] blur-3xl opacity-90 animate-blob2" />
+        {/* Secondary blue tint for depth */}
+        <div className="absolute left-[55%] bottom-[-20%] aspect-square w-[36rem] rounded-full bg-[radial-gradient(35%_35%_at_50%_50%,#6366F1_0%,transparent_75%)] blur-3xl opacity-70 animate-blob3" />
+        {/* Accent green blob */}
+        <div className="absolute left-[35%] bottom-[-25%] aspect-square w-[30rem] rounded-full bg-[radial-gradient(35%_35%_at_50%_50%,#10B981_0%,transparent_75%)] blur-2xl opacity-90 animate-blob4" />
+
+        {/* Soft color wash behind */}
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#4F46E5]/30 via-[#14B8A6]/20 to-transparent blur-[60px]" />
+      </div>
+
       {/* Background with particles and gradient */}
       <div className="absolute inset-0 overflow-hidden" style={{ willChange: 'transform' }}>
         <ParticleBackground reducedMotion={reducedMotion} />
@@ -83,7 +98,7 @@ export default function Hero() {
               
               {/* "Meet" with handwriting effect */}
               <motion.span
-                className="absolute -top-8 right-2
+                className="absolute -top-20 right-5
 
                  text-red-500 transform -rotate-2 font-handwriting text-6xl md:text-8xl"
                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
@@ -95,7 +110,7 @@ export default function Hero() {
                 transition={{ delay: 0.9, duration: 0.4, ease: "easeOut" }}
                 onAnimationComplete={() => setAnimationStep(3)}
               >
-                Meet
+                meet
               </motion.span>
             </span>
             {" "}people you're actually compatible with
@@ -109,7 +124,7 @@ export default function Hero() {
           animate={{ opacity: animationStep >= 3 ? 1 : 0, y: animationStep >= 3 ? 0 : 20 }}
           transition={{ delay: 1.3, duration: 0.4 }}
         >
-          We cut the stress of planning and asking people out. Just show up to meet the singles who already check your basic boxes.
+          We cut the stress of date planning and asking people out. Just show up to Take2 where you'll meet the singles who already check your basic boxes.
         </motion.p>
 
         {/* CTA Button */}
@@ -120,11 +135,11 @@ export default function Hero() {
         >
           <motion.a
             href="/apply"
-            className="inline-block bg-primary text-white px-8 py-4 rounded-full font-carlita font-bold text-lg hover:bg-primary/90 transition-colors shadow-lg"
+            className="inline-block bg-primary text-white px-8 py-4 rounded-full font-carlita font-bold text-lg hover:text-white hover:shadow-[0_10px_30px_rgba(59,91,195,0.4)] transition-all duration-300 shadow-lg"
             whileHover={reducedMotion ? {} : { scale: 1.05 }}
             whileTap={reducedMotion ? {} : { scale: 0.95 }}
           >
-            Get your invite 💌
+            Apply Now 💌
           </motion.a>
         </motion.div>
       </div>

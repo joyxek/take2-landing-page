@@ -58,7 +58,7 @@ export default function Footer() {
           )}
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
             <h3 className="text-2xl font-instrument font-bold mb-4">Take2</h3>
@@ -66,17 +66,6 @@ export default function Footer() {
               An invite-only dating event where singles in your city meet IRL. 
               Skip the apps, skip the stress - just show up to meet compatible singles.
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-instrument font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2 font-carlita text-neutral-300">
-              <li><a href="#how-it-works" className="hover:text-accent-green transition-colors">How It Works</a></li>
-              <li><a href="/apply" className="hover:text-accent-green transition-colors">Apply Now</a></li>
-              <li><a href="#faq" className="hover:text-accent-green transition-colors">FAQ</a></li>
-              <li><a href="#contact" className="hover:text-accent-green transition-colors">Contact</a></li>
-            </ul>
           </div>
 
           {/* Cities */}

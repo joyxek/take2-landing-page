@@ -13,7 +13,7 @@ const stats = [
     bgImage: 'linear-gradient(135deg, rgba(251, 146, 60, 0.8) 0%, rgba(236, 72, 153, 0.8) 50%, rgba(239, 68, 68, 0.8) 100%)',
     details: {
       subtitle: 'Growing Community',
-      stats: ['85% match rate', '3.2 avg connections per event', '92% would recommend']
+      stats: ['85% match rate', '13 avg connections per event', '92% would recommend']
     }
   },
   { 
@@ -25,7 +25,7 @@ const stats = [
     bgImage: 'linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(147, 51, 234, 0.8) 50%, rgba(79, 70, 229, 0.8) 100%)',
     details: {
       subtitle: 'Expanding Reach',
-      stats: ['Chicago coming Q1', 'Austin coming Q2', '10+ cities by 2025']
+      stats: ['Chicago, DC , and LA coming 2026', '10+ cities by 2026']
     }
   },
   { 
@@ -37,7 +37,7 @@ const stats = [
     bgImage: 'linear-gradient(135deg, rgba(16, 185, 129, 0.8) 0%, rgba(20, 184, 166, 0.8) 50%, rgba(6, 182, 212, 0.8) 100%)',
     details: {
       subtitle: 'Proven Success',
-      stats: ['6 months of events', '150+ successful matches', '4.8/5 avg rating']
+      stats: ['10 months of events', 'Return rate of 90%', '4.6/5 avg rating']
     }
   }
 ];
@@ -71,17 +71,32 @@ export default function NumbersStack() {
   return (
     <section 
       ref={containerRef}
-      className="relative py-20 bg-gradient-to-b from-neutral-900 via-neutral-800 to-black overflow-hidden"
+      className="relative py-20 overflow-hidden"
+      style={{ backgroundColor: 'white' }}
     >
+      {/* Hazy animated gradient background */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55vh] select-none [mask-image:linear-gradient(to_top,black,transparent_60%)]">
+        {/* Primary blue blob */}
+        <div className="absolute left-1/4 bottom-[-10%] aspect-square w-[40rem] rounded-full bg-[radial-gradient(35%_35%_at_50%_50%,#4F46E5_0%,transparent_70%)] blur-3xl opacity-70 animate-blob" />
+        {/* Supporting teal blob */}
+        <div className="absolute right-1/5 bottom-[-15%] aspect-square w-[42rem] rounded-full bg-[radial-gradient(35%_35%_at_50%_50%,#14B8A6_0%,transparent_70%)] blur-3xl opacity-90 animate-blob2" />
+        {/* Secondary blue tint for depth */}
+        <div className="absolute left-[55%] bottom-[-20%] aspect-square w-[36rem] rounded-full bg-[radial-gradient(35%_35%_at_50%_50%,#6366F1_0%,transparent_75%)] blur-3xl opacity-70 animate-blob3" />
+        {/* Accent green blob */}
+        <div className="absolute left-[35%] bottom-[-25%] aspect-square w-[30rem] rounded-full bg-[radial-gradient(35%_35%_at_50%_50%,#10B981_0%,transparent_75%)] blur-2xl opacity-90 animate-blob4" />
+
+        {/* Soft color wash behind */}
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#4F46E5]/30 via-[#14B8A6]/20 to-transparent blur-[60px]" />
+      </div>
       <div className="max-w-md mx-auto px-6">
         <motion.h2 
-          className="text-4xl md:text-5xl font-instrument font-bold text-white mb-16 text-center"
+          className="text-4xl md:text-5xl font-instrument font-bold text-gray-700 mb-16 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          The Numbers Speak
+          Take2 Numbers
         </motion.h2>
         
         {/* Stacked Cards Container */}
@@ -243,37 +258,18 @@ export default function NumbersStack() {
 
         {/* CTA Button */}
         <motion.div
-          className="text-center"
+          className="text-center relative z-20"
           initial={{ opacity: 0, y: 30 }}
           animate={showCTA ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <motion.a
             href="/apply"
-            className="relative inline-block bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-carlita font-bold text-lg shadow-xl transition-all duration-300 overflow-hidden border border-white/20"
-            whileHover={reducedMotion ? {} : { 
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(255, 255, 255, 0.1)"
-            }}
-            whileTap={reducedMotion ? {} : { scale: 0.98 }}
+            className="inline-block bg-primary text-white px-8 py-4 rounded-full font-carlita font-bold text-lg hover:text-white hover:shadow-[0_10px_30px_rgba(59,91,195,0.4)] transition-all duration-300 shadow-lg"
+            whileHover={reducedMotion ? {} : { scale: 1.05 }}
+            whileTap={reducedMotion ? {} : { scale: 0.95 }}
           >
-            <span className="relative z-10">Apply for an Invite</span>
-            
-            {/* Gentle pulse ring */}
-            {!reducedMotion && (
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-white/30"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.5, 0, 0.5]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            )}
+            Apply Now 💌
           </motion.a>
         </motion.div>
       </div>

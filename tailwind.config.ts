@@ -84,12 +84,13 @@ const config: Config = {
       },
       
       fontFamily: {
-        'instrument': ['Times New Roman', 'serif'],
-        'carlita': ['var(--font-source-sans)', 'sans-serif'],
+        'instrument': ['var(--font-philosopher)', 'serif'],
+        'carlita': ['var(--font-mulish)', 'sans-serif'],
         'handwriting': ['var(--font-handwriting)', 'cursive'],
-        'sans': ['var(--font-source-sans)', 'sans-serif'],
+        'sans': ['var(--font-mulish)', 'sans-serif'],
         'mono': ['var(--font-geist-mono)', 'monospace'],
-        'source-sans': ['var(--font-source-sans)', 'sans-serif'],
+        'philosopher': ['var(--font-philosopher)', 'serif'],
+        'mulish': ['var(--font-mulish)', 'sans-serif'],
       },
 
       animation: {

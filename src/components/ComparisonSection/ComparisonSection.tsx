@@ -16,7 +16,7 @@ const comparisonData = {
     title: 'Dating Apps',
     issues: [
       { text: 'Your success depends on your profile + pictures'},
-      { text: '0% chance of connection without a mutual match'},
+      { text: 'Without a mutual match there is a 0% chance of connection'},
       { text: 'Texting etiquette is highly judged'},
       { text: 'High effort to low payoff: Weeks of chat before a single IRL meeting'},
       { text: 'If you\'re a man: You plan and pay for it all'},

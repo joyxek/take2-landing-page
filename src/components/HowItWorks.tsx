@@ -10,25 +10,25 @@ const steps = [
     title: "Submit your profile.",
     description: "Take 5-7 minutes to create your profile. We will collect basic information about you as well as your dating preferences and values. Answer as little or as much as you'd like.",
     icon: "📝",
-    gradient: "from-orange-400 via-pink-500 to-purple-600",
-    accentColor: "text-orange-300",
+    gradient: "from-blue-500 via-teal-400 to-green-400",
+    accentColor: "text-blue-300",
     bgPattern: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%)"
   },
   {
     id: 2,
     title: "Get matched into an event.",
-    description: "The team will evaluate profiles to curate an event for singles like you. We place you in an event with the most singles who fit your basics.",
+    description: "The team will evaluate profiles to curate an event for singles like you. We place you in an event with the most singles who fit your basic preferences.",
     icon: "🎯",
-    gradient: "from-cyan-400 via-blue-500 to-purple-600",
-    accentColor: "text-cyan-300",
+    gradient: "from-teal-500 via-cyan-400 to-yellow-400",
+    accentColor: "text-teal-300",
     bgPattern: "radial-gradient(circle at 70% 30%, rgba(255,255,255,0.2) 0%, transparent 50%), radial-gradient(circle at 30% 70%, rgba(255,255,255,0.15) 0%, transparent 50%)"
   },
   {
     id: 3,
     title: "Show up & date irl",
-    description: "We remove all the stress of logistics; you just focus on being yourself and dating irl.",
+    description: "We remove all the stress of dating logistics. You just focus on being yourself and dating irl.",
     icon: "✨",
-    gradient: "from-green-400 via-emerald-500 to-teal-600",
+    gradient: "from-green-400 via-lime-400 to-yellow-300",
     accentColor: "text-green-300",
     bgPattern: "radial-gradient(circle at 40% 60%, rgba(255,255,255,0.2) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(255,255,255,0.15) 0%, transparent 50%)"
   }
@@ -115,7 +115,7 @@ export default function HowItWorks() {
   }, [currentStep, isNavigating]);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-neutral-900 via-neutral-800 to-black relative overflow-hidden min-h-screen flex items-center">
+    <section className="py-20 relative overflow-hidden min-h-screen flex items-center" style={{ backgroundColor: '#3b5bc3' }}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-y-12" />
@@ -152,7 +152,11 @@ export default function HowItWorks() {
               key={currentStep}
               className={`relative bg-gradient-to-br ${steps[currentStep].gradient} rounded-3xl p-8 shadow-2xl overflow-hidden`}
               style={{
-                backgroundImage: steps[currentStep].bgPattern,
+                background: `linear-gradient(135deg, ${
+                  currentStep === 0 ? 'rgba(59, 130, 246, 0.2), rgba(45, 212, 191, 0.2), rgba(74, 222, 128, 0.2)' :
+                  currentStep === 1 ? 'rgba(20, 184, 166, 0.2), rgba(34, 211, 238, 0.2), rgba(250, 204, 21, 0.2)' :
+                  'rgba(74, 222, 128, 0.2), rgba(200, 211, 183, 0.2), rgba(253, 224, 71, 0.2)'
+                })`,
                 minHeight: '400px'
               }}
               initial={{ opacity: 0, x: 300, rotateY: 45 }}
@@ -248,7 +252,7 @@ export default function HowItWorks() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Got it! Let's apply
+                    Got it! Apply Now 💌
                   </motion.button>
                 )}
               </div>
@@ -305,7 +309,7 @@ export default function HowItWorks() {
             transition={{ delay: 2 }}
           >
             <p className="text-neutral-400 text-sm font-carlita">
-              Swipe or use arrow keys to navigate
+              Swipe or use navigation buttons to navigate
             </p>
           </motion.div>
         )}
