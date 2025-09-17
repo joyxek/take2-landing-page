@@ -113,7 +113,7 @@ export default function Hero() {
                 meet
               </motion.span>
             </span>
-            {" "}people you're actually compatible with
+            {" "}people you&apos;re actually compatible with
           </h1>
         </div>
 
@@ -124,7 +124,7 @@ export default function Hero() {
           animate={{ opacity: animationStep >= 3 ? 1 : 0, y: animationStep >= 3 ? 0 : 20 }}
           transition={{ delay: 1.3, duration: 0.4 }}
         >
-          We cut the stress of date planning and asking people out. Just show up to Take2 where you'll meet the singles who already check your basic boxes.
+          We cut the stress of date planning and asking people out. Just show up to Take2 where you&apos;ll meet the singles who already check your basic boxes.
         </motion.p>
 
         {/* CTA Button */}

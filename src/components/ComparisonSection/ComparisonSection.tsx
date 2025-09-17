@@ -19,8 +19,8 @@ const comparisonData = {
       { text: 'Without a mutual match there is a 0% chance of connection'},
       { text: 'Texting etiquette is highly judged'},
       { text: 'High effort to low payoff: Weeks of chat before a single IRL meeting'},
-      { text: 'If you\'re a man: You plan and pay for it all'},
-      { text: 'Bad dating morale if you don\'t stand out on the apps' }
+      { text: 'If you&apos;re a man: You plan and pay for it all'},
+      { text: 'Bad dating morale if you don&apos;t stand out on the apps' }
     ]
   },
   take2: {
@@ -61,7 +61,7 @@ export default function ComparisonSection() {
             Take2 is NOT a dating app
           </h2>
           <p className="text-xl font-carlita text-neutral-600 max-w-3xl mx-auto">
-            See how we're different from everything you've tried before
+            See how we&apos;re different from everything you&apos;ve tried before
           </p>
         </div>
 
