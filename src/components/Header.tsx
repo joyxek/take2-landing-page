@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function Header() {
   const { scrollY } = useScroll();
   
-  // Fade out logo as user scrolls down
+  // Create motion values at top level
   const logoOpacity = useTransform(scrollY, [0, 200], [1, 0]);
   const logoY = useTransform(scrollY, [0, 200], [0, -20]);
 

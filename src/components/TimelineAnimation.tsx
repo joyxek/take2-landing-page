@@ -61,10 +61,12 @@ const datingAppSteps = [
 export default function TimelineAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showCTA, setShowCTA] = useState(false);
-  
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  // Scroll tracking for the entire component
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start center", "end center"]
   });
 
   // Transform scroll progress to a slower, more deliberate pace
@@ -72,6 +74,19 @@ export default function TimelineAnimation() {
 
   // Radial progress (0 to 360 degrees)
   const radialProgress = useTransform(draggyProgress, [0.2, 0.85], [0, 360]);
+  
+  // Create all motion values at top level
+  const strokeDashOffset = useTransform(radialProgress, [0, 360], [301.59, 0]);
+  const centerOpacity = useTransform(draggyProgress, [0, 1], [0, 0.8]);
+  const finalTextOpacity = useTransform(draggyProgress, [0.85, 1.0], [0, 1]);
+  
+  // Create motion values for each step
+  const stepMotionValues = datingAppSteps.map(step => ({
+    isInRange: useTransform(draggyProgress, [step.progressStart, step.progressEnd], [0, 1]),
+    shouldShow: useTransform(draggyProgress, (progress) => {
+      return progress >= step.progressStart && progress < step.progressEnd ? 1 : 0;
+    })
+  }));
   
   useEffect(() => {
     const unsubscribe = draggyProgress.onChange((latest) => {
@@ -140,7 +155,7 @@ export default function TimelineAnimation() {
               strokeLinecap="round"
               strokeDasharray="301.59 301.59"
               style={{
-                strokeDashoffset: useTransform(radialProgress, [0, 360], [301.59, 0])
+                strokeDashoffset: strokeDashOffset
               }}
             />
           </svg>
@@ -149,7 +164,7 @@ export default function TimelineAnimation() {
           <motion.div
             className="absolute inset-4 rounded-full bg-gradient-to-br from-red-100/50 to-red-200/30 backdrop-blur-sm"
             style={{
-              opacity: useTransform(draggyProgress, [0, 1], [0, 0.8])
+              opacity: centerOpacity
             }}
           />
 
@@ -158,7 +173,7 @@ export default function TimelineAnimation() {
             <motion.div 
               className="text-center"
               style={{
-                opacity: useTransform(draggyProgress, [0.85, 1.0], [0, 1])
+                opacity: finalTextOpacity
               }}
             >
               <div className="text-2xl sm:text-3xl font-instrument font-bold text-red-600 mb-2">
@@ -173,16 +188,8 @@ export default function TimelineAnimation() {
 
         {/* Milestone Cards - Only show one at a time */}
         {datingAppSteps.map((step, index) => {
-          // Only show this card if we're in its progress range
-          const isInRange = useTransform(draggyProgress, 
-            [step.progressStart, step.progressEnd], 
-            [0, 1]
-          );
-          
-          // Hide previous cards when moving to next
-          const shouldShow = useTransform(draggyProgress, (progress) => {
-            return progress >= step.progressStart && progress < step.progressEnd ? 1 : 0;
-          });
+          // Use pre-created motion values
+          const { isInRange, shouldShow } = stepMotionValues[index];
           
           const radius = typeof window !== 'undefined' 
             ? (window.innerWidth < 640 ? 80 : window.innerWidth < 768 ? 100 : 200)

@@ -8,7 +8,7 @@ import SceneBackdrop from './SceneBackdrop';
 
 const comparisonData = {
   shared: [
-    'Let you "filter" who you might meet',
+    'Let you &quot;filter&quot; who you might meet',
     'Ask for basic preferences and profile info',
     'Aim to connect singles looking for relationships'
   ],

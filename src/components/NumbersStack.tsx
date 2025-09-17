@@ -20,24 +20,24 @@ const stats = [
     id: 2,
     number: '3', 
     label: 'Cities',
-    description: 'NYC, SF, and LA with more launching soon',
+    description: 'NYC, SF, and LA with more cities launching soon',
     gradient: 'from-blue-500 via-purple-500 to-indigo-600',
     bgImage: 'linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(147, 51, 234, 0.8) 50%, rgba(79, 70, 229, 0.8) 100%)',
     details: {
-      subtitle: 'Expanding Reach',
-      stats: ['Chicago, DC , and LA coming 2026', '10+ cities by 2026']
+      subtitle: 'Expanding Nationwide',
+      stats: ['Next: Austin', 'Then: Chicago', 'Goal: 15 cities by 2025']
     }
   },
   { 
     id: 3,
     number: '2024', 
-    label: 'Launched',
-    description: 'Fresh approach to dating that actually works',
+    label: 'Founded',
+    description: 'Built by singles, for singles who are tired of dating apps',
     gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
     bgImage: 'linear-gradient(135deg, rgba(16, 185, 129, 0.8) 0%, rgba(20, 184, 166, 0.8) 50%, rgba(6, 182, 212, 0.8) 100%)',
     details: {
-      subtitle: 'Proven Success',
-      stats: ['10 months of events', 'Return rate of 90%', '4.6/5 avg rating']
+      subtitle: 'Fresh Approach',
+      stats: ['Founded by 2 friends', 'Bootstrapped & authentic', 'Community-first mindset']
     }
   }
 ];

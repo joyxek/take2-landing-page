@@ -68,7 +68,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-neutral-700 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="font-carlita text-neutral-400 text-sm">
-            © 2024 Take2. All rights reserved.
+            &copy; 2024 Take2. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="font-carlita text-neutral-400 hover:text-accent-green text-sm transition-colors">

@@ -24,7 +24,7 @@ export default function HeroSection() {
                 Meet
               </span>
             </span>
-            {" "}People You're Actually Compatible With
+            {" "}People You&apos;re Actually Compatible With
           </h1>
         </div>
 
