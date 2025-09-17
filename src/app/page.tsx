@@ -17,10 +17,7 @@ export default function Home() {
       <HowItWorks />
 
       {/* 3. Timeline Animation (Time to Date) */}
-      <div>
-        <title>Take2 - Skip the Apps, Meet IRL</title>
-        <meta name="description" content="An invite-only dating event where singles in your city meet IRL. Skip the apps, skip the stress - just show up to meet compatible singles." />
-      </div>
+      <TimelineAnimation />
 
       {/* 4. Comparison Section (Take2 vs Dating Apps) */}
       <div className="relative z-10">

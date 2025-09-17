@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useGesture } from '@use-gesture/react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 const steps = [
   {
@@ -35,10 +34,7 @@ const steps = [
 ];
 
 export default function HowItWorks() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [isNavigating, setIsNavigating] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -53,63 +49,6 @@ export default function HowItWorks() {
   const handleScrollToApplication = () => {
     window.open('https://form.typeform.com/to/llHovcds', '_blank');
   };
-
-  // Horizontal swipe gesture handling
-  const bind = useGesture({
-    onDrag: ({ movement: [mx], direction: [dx], velocity: [vx], last }) => {
-      if (Math.abs(mx) < 50 && !last) return;
-      if (isNavigating) return;
-      
-      if (last) {
-        const threshold = 100;
-        const shouldChange = Math.abs(mx) > threshold || Math.abs(vx) > 0.5;
-        
-        if (shouldChange) {
-          setIsNavigating(true);
-          
-          if (dx > 0) {
-            // Swiping right - go to previous step
-            if (currentStep > 0) {
-              setCurrentStep(prev => prev - 1);
-            }
-          } else {
-            // Swiping left - go to next step
-            if (currentStep < steps.length - 1) {
-              setCurrentStep(prev => prev + 1);
-            }
-          }
-          
-          setTimeout(() => setIsNavigating(false), 600);
-        }
-      }
-    }
-  }, {
-    drag: {
-      axis: 'x',
-      filterTaps: true,
-      threshold: 10
-    }
-  });
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isNavigating) return;
-      
-      if (e.key === 'ArrowLeft' && currentStep > 0) {
-        setIsNavigating(true);
-        setCurrentStep(prev => prev - 1);
-        setTimeout(() => setIsNavigating(false), 600);
-      } else if (e.key === 'ArrowRight' && currentStep < steps.length - 1) {
-        setIsNavigating(true);
-        setCurrentStep(prev => prev + 1);
-        setTimeout(() => setIsNavigating(false), 600);
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [currentStep, isNavigating]);
 
   return (
     <section className="py-20 relative overflow-hidden min-h-screen flex items-center" style={{ backgroundColor: '#3b5bc3' }}>

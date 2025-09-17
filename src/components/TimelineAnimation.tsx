@@ -61,7 +61,6 @@ const datingAppSteps = [
 export default function TimelineAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showCTA, setShowCTA] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
 
   // Scroll tracking for the entire component
   const { scrollYProgress } = useScroll({
@@ -80,13 +79,14 @@ export default function TimelineAnimation() {
   const centerOpacity = useTransform(draggyProgress, [0, 1], [0, 0.8]);
   const finalTextOpacity = useTransform(draggyProgress, [0.85, 1.0], [0, 1]);
   
-  // Create motion values for each step
-  const stepMotionValues = datingAppSteps.map(step => ({
-    isInRange: useTransform(draggyProgress, [step.progressStart, step.progressEnd], [0, 1]),
-    shouldShow: useTransform(draggyProgress, (progress) => {
+  // Create motion values for each step at top level
+  const stepMotionValues = datingAppSteps.map(step => {
+    const isInRange = useTransform(draggyProgress, [step.progressStart, step.progressEnd], [0, 1]);
+    const shouldShow = useTransform(draggyProgress, (progress) => {
       return progress >= step.progressStart && progress < step.progressEnd ? 1 : 0;
-    })
-  }));
+    });
+    return { isInRange, shouldShow };
+  });
   
   useEffect(() => {
     const unsubscribe = draggyProgress.onChange((latest) => {
@@ -189,7 +189,7 @@ export default function TimelineAnimation() {
         {/* Milestone Cards - Only show one at a time */}
         {datingAppSteps.map((step, index) => {
           // Use pre-created motion values
-          const { isInRange, shouldShow } = stepMotionValues[index];
+          const { shouldShow } = stepMotionValues[index];
           
           const radius = typeof window !== 'undefined' 
             ? (window.innerWidth < 640 ? 80 : window.innerWidth < 768 ? 100 : 200)

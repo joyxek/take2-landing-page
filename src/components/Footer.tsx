@@ -3,23 +3,9 @@
 import { useState } from 'react';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
 
-    setIsSubmitting(true);
-    
-    // Simulate API call - replace with actual email capture service
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setEmail('');
-    }, 1000);
-  };
+
 
   return (
     <footer className="bg-primary text-white py-16">
