@@ -142,28 +142,29 @@ export default function HowItWorks() {
           </motion.p>
         </div>
 
-        {/* Card Container */}
-        <div ref={cardRef} className="relative max-w-lg mx-auto" {...bind()}>
-          <AnimatePresence mode="wait">
+        {/* Cards Container - Vertical Stack */}
+        <div className="space-y-8 max-w-lg mx-auto">
+          {steps.map((step, index) => (
             <motion.div
-              key={currentStep}
-              className={`relative bg-gradient-to-br ${steps[currentStep].gradient} rounded-3xl p-8 shadow-2xl overflow-hidden`}
+              key={step.id}
+              className="relative bg-gradient-to-br rounded-3xl p-8 shadow-2xl overflow-hidden"
               style={{
                 background: `linear-gradient(135deg, ${
-                  currentStep === 0 ? 'rgba(59, 130, 246, 0.2), rgba(45, 212, 191, 0.2), rgba(74, 222, 128, 0.2)' :
-                  currentStep === 1 ? 'rgba(20, 184, 166, 0.2), rgba(34, 211, 238, 0.2), rgba(250, 204, 21, 0.2)' :
+                  index === 0 ? 'rgba(59, 130, 246, 0.2), rgba(45, 212, 191, 0.2), rgba(74, 222, 128, 0.2)' :
+                  index === 1 ? 'rgba(20, 184, 166, 0.2), rgba(34, 211, 238, 0.2), rgba(250, 204, 21, 0.2)' :
                   'rgba(74, 222, 128, 0.2), rgba(200, 211, 183, 0.2), rgba(253, 224, 71, 0.2)'
                 })`,
                 minHeight: '400px'
               }}
-              initial={{ opacity: 0, x: 300, rotateY: 45 }}
-              animate={{ opacity: 1, x: 0, rotateY: 0 }}
-              exit={{ opacity: 0, x: -300, rotateY: -45 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ 
                 type: "spring", 
                 damping: 20, 
                 stiffness: 100,
-                duration: 0.6
+                duration: 0.8,
+                delay: index * 0.2
               }}
               whileHover={!reducedMotion ? {
                 scale: 1.02,
@@ -184,7 +185,8 @@ export default function HowItWorks() {
                     transition={{
                       duration: 4,
                       repeat: Infinity,
-                      ease: "easeInOut"
+                      ease: "easeInOut",
+                      delay: index * 0.5
                     }}
                   />
                   <motion.div
@@ -198,7 +200,7 @@ export default function HowItWorks() {
                       duration: 3,
                       repeat: Infinity,
                       ease: "easeInOut",
-                      delay: 1
+                      delay: 1 + (index * 0.3)
                     }}
                   />
                 </>
@@ -212,45 +214,51 @@ export default function HowItWorks() {
                 <motion.div
                   className="text-7xl mb-6"
                   initial={{ scale: 0, rotate: -90 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.4, type: "spring", damping: 12 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 + (index * 0.2), type: "spring", damping: 12 }}
                 >
-                  {steps[currentStep].icon}
+                  {step.icon}
                 </motion.div>
 
                 {/* Title */}
                 <motion.h3
                   className="text-3xl md:text-4xl font-instrument font-bold mb-4"
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 + (index * 0.2), duration: 0.6 }}
                 >
-                  {steps[currentStep].title}
+                  {step.title}
                 </motion.h3>
 
                 {/* Description */}
                 <motion.p
                   className="text-lg font-carlita leading-relaxed opacity-90"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.6 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 + (index * 0.2), duration: 0.6 }}
                 >
-                  {steps[currentStep].description}
+                  {step.description}
                 </motion.p>
 
                 {/* CTA on last step */}
-                {currentStep === steps.length - 1 && (
-                  <motion.button
-                    onClick={handleScrollToApplication}
-                    className="mt-8 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-carlita font-bold px-8 py-4 rounded-full text-lg shadow-lg transition-all duration-200 border border-white/30"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Got it! Apply Now 💌
-                  </motion.button>
+                {index === steps.length - 1 && (
+                  <motion.div className="mt-8 w-full max-w-xs mx-auto">
+                    <motion.button
+                      onClick={handleScrollToApplication}
+                      className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-carlita font-bold px-8 py-4 rounded-full text-lg shadow-lg transition-all duration-200 border border-white/30"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.8 + (index * 0.2) }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Got it! Apply Now 💌
+                    </motion.button>
+                  </motion.div>
                 )}
               </div>
 
@@ -264,52 +272,15 @@ export default function HowItWorks() {
                   transition={{
                     duration: 2,
                     repeat: Infinity,
-                    repeatDelay: 3,
-                    ease: "easeInOut"
+                    repeatDelay: 3 + (index * 1),
+                    ease: "easeInOut",
+                    delay: index * 0.5
                   }}
                 />
               )}
             </motion.div>
-          </AnimatePresence>
-
-        </div>
-
-        {/* Step Indicators */}
-        <div className="flex justify-center mt-12 space-x-3">
-          {steps.map((_, index) => (
-            <motion.button
-              key={index}
-              onClick={() => {
-                if (!isNavigating && index !== currentStep) {
-                  setIsNavigating(true);
-                  setCurrentStep(index);
-                  setTimeout(() => setIsNavigating(false), 600);
-                }
-              }}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentStep 
-                  ? 'bg-white scale-125 shadow-lg' 
-                  : 'bg-white/40 hover:bg-white/60'
-              }`}
-              disabled={isNavigating}
-              whileHover={!reducedMotion ? { scale: index === currentStep ? 1.25 : 1.1 } : {}}
-            />
           ))}
         </div>
-
-        {/* Swipe Hint */}
-        {currentStep === 0 && (
-          <motion.div
-            className="text-center mt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2 }}
-          >
-            <p className="text-neutral-400 text-sm font-carlita">
-              Swipe or use navigation buttons to navigate
-            </p>
-          </motion.div>
-        )}
       </div>
     </section>
   );

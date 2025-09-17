@@ -31,14 +31,16 @@ export default function Footer() {
             Check out upcoming Take2 events in your city and RSVP directly.
           </p>
           
-          <a 
-            href="https://lu.ma/taketwo" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-block bg-accent-green text-primary px-8 py-4 rounded-full font-carlita font-bold text-lg hover:bg-accent-green/90 transition-colors shadow-lg"
-          >
-            View Events on Luma
-          </a>
+          <div className="w-full max-w-md mx-auto px-4">
+            <a 
+              href="https://lu.ma/taketwo" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block w-full bg-accent-green text-primary px-8 py-4 rounded-full font-carlita font-bold text-lg text-center hover:bg-accent-green/90 transition-colors shadow-lg"
+            >
+              View Events on Luma
+            </a>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">

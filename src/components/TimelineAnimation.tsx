@@ -117,7 +117,7 @@ export default function TimelineAnimation() {
           transition={{ duration: 1, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          Could take up to 8 months
+          Finding your person on a dating app could take up to 8 months
         </motion.div>
       </div>
 
@@ -300,7 +300,7 @@ export default function TimelineAnimation() {
       <AnimatePresence>
         {showCTA && (
           <motion.div
-            className="flex justify-center py-20 px-6 bg-white relative z-30"
+            className="py-20 px-6 bg-white relative z-30"
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ 
@@ -308,12 +308,13 @@ export default function TimelineAnimation() {
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
           >
-            <motion.a
-              href="https://form.typeform.com/to/llHovcds"
-              className="relative group"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
+            <div className="w-full max-w-lg mx-auto">
+              <motion.a
+                href="https://form.typeform.com/to/llHovcds"
+                className="relative group block w-full"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
               {/* Glassmorphic Button */}
               <div className="relative bg-gradient-to-r from-teal-400/20 to-blue-500/20 backdrop-blur-xl rounded-full px-12 py-6 border border-white/30 shadow-2xl overflow-hidden">
                 {/* Shimmer Effect */}
@@ -351,7 +352,8 @@ export default function TimelineAnimation() {
                   </div>
                 </div>
               </div>
-            </motion.a>
+              </motion.a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

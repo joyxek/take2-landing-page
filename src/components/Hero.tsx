@@ -98,7 +98,7 @@ export default function Hero() {
               
               {/* "Meet" with handwriting effect */}
               <motion.span
-                className="absolute -top-20 right-5
+                className="absolute -top-10 right-5
 
                  text-red-500 transform -rotate-2 font-handwriting text-6xl md:text-8xl"
                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
@@ -129,15 +129,16 @@ export default function Hero() {
 
         {/* CTA Button */}
         <motion.div
+          className="w-full max-w-md mx-auto px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: animationStep >= 3 ? 1 : 0, y: animationStep >= 3 ? 0 : 20 }}
           transition={{ delay: 1.7, duration: 0.3 }}
         >
           <motion.a
             href="https://form.typeform.com/to/llHovcds"
-            className="inline-block bg-primary text-white px-8 py-4 rounded-full font-carlita font-bold text-lg hover:text-white hover:shadow-[0_10px_30px_rgba(59,91,195,0.4)] transition-all duration-300 shadow-lg"
-            whileHover={reducedMotion ? {} : { scale: 1.05 }}
-            whileTap={reducedMotion ? {} : { scale: 0.95 }}
+            className="block w-full bg-primary text-white px-8 py-4 rounded-full font-carlita font-bold text-lg text-center hover:text-white hover:shadow-[0_10px_30px_rgba(59,91,195,0.4)] transition-all duration-300 shadow-lg"
+            whileHover={reducedMotion ? {} : { scale: 1.02 }}
+            whileTap={reducedMotion ? {} : { scale: 0.98 }}
           >
             Apply Now 💌
           </motion.a>
