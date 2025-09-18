@@ -3,6 +3,29 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
+const carouselCards = [
+  {
+    id: 1,
+    title: "Your profile is reviewed by our Team",
+    description: "Our team personally reviews each application and places you in the right room based on preferences, compatibility, and intentions. Your profile stays active for future events even if you can’t make the first one."
+  },
+  {
+    id: 2,
+    title: "Matching work",
+    description: "We do the hard part. Leave it up to us to build the right-sized event, balance the room, and make sure everyone there belongs there."
+  },
+  {
+    id: 3,
+    title: "Tailored Event Experience",
+    description: "Imagine walking into a room where everyone’s already been vetted and chosen for you. We want to build you the kind of meet-cute moment you’ve been waiting for."
+  },
+  {
+    id: 4,
+    title: "Your $10 is a membership",
+    description: "Your profile stays active and you will continue creating events for as long as you want."
+  }
+];
+
 const timelineSteps = [
   {
     id: 1,
@@ -56,6 +79,7 @@ const timelineSteps = [
 
 export default function StickyTimeline() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
 
   const nextStep = () => {
     if (currentStep < timelineSteps.length - 1) {
@@ -69,16 +93,107 @@ export default function StickyTimeline() {
     }
   };
 
+  const nextCarouselCard = () => {
+    setCurrentCarouselIndex(prev => (prev + 1) % carouselCards.length);
+  };
+
+  const prevCarouselCard = () => {
+    setCurrentCarouselIndex(prev => (prev - 1 + carouselCards.length) % carouselCards.length);
+  };
+
+  const handleApplyNow = () => {
+    window.open('https://form.typeform.com/to/llHovcds', '_blank');
+  };
+
   return (
     <div className="relative bg-white py-16 md:py-20 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         
-        {/* Header Text */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-orbit font-bold text-gray-900 mb-8">
-            Here&apos;s how a dating app works.
-          </h2>
+        {/* Carousel Section */}
+        <div className="mb-16 md:mb-20">
+          {/* Desktop View - Show all cards */}
+          <div className="hidden md:grid md:grid-cols-4 gap-6">
+            {carouselCards.map((card, index) => (
+              <motion.div
+                key={card.id}
+                className="bg-gray-200 rounded-2xl p-6 h-64 flex flex-col"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <h3 className="font-orbit font-semibold text-gray-900 text-sm mb-4 leading-tight">
+                  {card.title}
+                </h3>
+                <p className="font-inter text-xs text-gray-700 leading-relaxed flex-1">
+                  {card.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile View - Carousel */}
+          <div className="md:hidden">
+            <div className="relative">
+              <motion.div
+                className="bg-gray-200 rounded-2xl p-6 h-64 flex flex-col mx-4"
+                key={`carousel-${currentCarouselIndex}`}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <h3 className="font-orbit font-semibold text-gray-900 text-base mb-4 leading-tight">
+                  {carouselCards[currentCarouselIndex].title}
+                </h3>
+                <p className="font-inter text-sm text-gray-700 leading-relaxed flex-1">
+                  {carouselCards[currentCarouselIndex].description}
+                </p>
+              </motion.div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevCarouselCard}
+                className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              <button
+                onClick={nextCarouselCard}
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            {/* Dots Indicator */}
+            
+          </div>
         </div>
+
+        {/* CTA under Carousel */}
+        <div className="flex justify-center mb-12">
+          <motion.button
+            onClick={handleApplyNow}
+            className="bg-[#3b5bc3] hover:bg-[#2d4aa3] text-white font-inter px-8 py-3 rounded-full text-base shadow-lg transition-all duration-200"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Apply Now
+          </motion.button>
+        </div>
+
+        {/* Timeline Section */}
+        <div className="max-w-4xl mx-auto">
+          {/* Header Text */}
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-orbit font-bold text-gray-900 mb-8">
+              Here&apos;s how a dating app works.
+            </h2>
+          </div>
 
         {/* Progress Dots */}
         <div className="flex justify-center mb-8">
@@ -219,7 +334,7 @@ export default function StickyTimeline() {
               We&apos;ll say the quiet part out loud ...
             </p>
             <p className="text-lg md:text-xl font-inter font-semibold text-gray-900 mb-6">
-              The dating apps don&apos;t care about your relationships goals. 
+              The dating apps don&apos;t care about your relationship goals. 
             </p>
             <p className="text-lg md:text-xl font-inter font-semibold text-gray-900 mb-8">
               If they did, there wouldn&apos;t be this much friction just to go on a date.
@@ -257,6 +372,7 @@ export default function StickyTimeline() {
               </motion.svg>
             </motion.div>
           </motion.div>
+        </div>
         </div>
       </div>
     </div>

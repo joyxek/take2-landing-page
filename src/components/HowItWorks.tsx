@@ -165,9 +165,6 @@ const EmojiPeople = () => {
 };
 
 export default function HowItWorks() {
-  const handleScrollToApplication = () => {
-    window.open('https://form.typeform.com/to/llHovcds', '_blank');
-  };
 
   return (
     <section className="py-20 bg-white">
@@ -217,25 +214,7 @@ export default function HowItWorks() {
                   {step.description}
                 </motion.p>
                 
-                {/* CTA Button on last step */}
-                {step.type === 'cta' && (
-                  <motion.div 
-                    className="mt-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 + (index * 0.2) }}
-                  >
-                    <motion.button
-                      onClick={handleScrollToApplication}
-                      className="bg-[#3b5bc3] hover:bg-[#2d4aa3] text-white font-inter px-8 py-3 rounded-full text-base shadow-lg transition-all duration-200"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      Apply Now
-                    </motion.button>
-                  </motion.div>
-                )}
+                {/* CTA Button moved to StickyTimeline carousel section */}
               </div>
 
               {/* Visual Content */}
