@@ -91,6 +91,8 @@ const config: Config = {
         'mono': ['var(--font-geist-mono)', 'monospace'],
         'philosopher': ['var(--font-philosopher)', 'serif'],
         'mulish': ['var(--font-mulish)', 'sans-serif'],
+        'inter': ['var(--font-inter)', 'sans-serif'],
+        'orbit': ['var(--font-orbit)', 'sans-serif'],
       },
 
       animation: {

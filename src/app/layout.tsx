@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Caveat, Instrument_Serif, Carlito, Philosopher, Mulish, Lavishly_Yours } from "next/font/google";
+import { Geist, Geist_Mono, Caveat, Instrument_Serif, Carlito, Philosopher, Mulish, Lavishly_Yours, Inter, Orbit } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -50,6 +50,20 @@ const mulish = Mulish({
 
 const lavishlyYours = Lavishly_Yours({
   variable: "--font-lavishly-yours",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const orbit = Orbit({
+  variable: "--font-orbit",
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",
@@ -116,7 +130,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#6EE7B7" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} ${instrumentSerif.variable} ${carlito.variable} ${philosopher.variable} ${mulish.variable} ${lavishlyYours.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} ${instrumentSerif.variable} ${carlito.variable} ${philosopher.variable} ${mulish.variable} ${lavishlyYours.variable} ${inter.variable} ${orbit.variable} antialiased`}
       >
         {children}
       </body>

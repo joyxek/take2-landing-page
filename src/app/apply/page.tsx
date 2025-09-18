@@ -20,10 +20,10 @@ export default function ApplyPage() {
           Redirecting to Application...
         </h1>
         <p className="text-lg font-carlita text-neutral-600 mb-6">
-          You're being redirected to our secure application form.
+          You&apos;re being redirected to our secure application form.
         </p>
         <p className="text-sm font-carlita text-neutral-500">
-          If you're not redirected automatically, 
+          If you&apos;re not redirected automatically, 
           <a 
             href="https://forms.gle/REPLACE-WITH-ACTUAL-TAKE2-FORM-ID" 
             className="text-primary hover:underline ml-1"
