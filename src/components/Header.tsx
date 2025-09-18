@@ -26,7 +26,7 @@ export default function Header() {
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <Image
-              src="/Take 2 Logo - color copy.svg"
+              src="/Take 2 Logo - Color copy.png"
               alt="Take2 Logo"
               width={350}
               height={75}
