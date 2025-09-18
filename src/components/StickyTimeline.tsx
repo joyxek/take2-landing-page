@@ -161,30 +161,31 @@ export default function StickyTimeline() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
-              
-              {/* Card Icon */}
-              <motion.div
-                className="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6"
-                initial={{ scale: 0, rotate: -90 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ delay: 0.2, type: "spring", damping: 10 }}
-              >
-                {timelineSteps[currentStep]?.icon}
-              </motion.div>
+              <div className="flex flex-col items-center justify-center h-full w-full px-4 sm:px-6 text-center">
+                {/* Card Icon */}
+                <motion.div
+                  className="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6"
+                  initial={{ scale: 0, rotate: -90 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.2, type: "spring", damping: 10 }}
+                >
+                  {timelineSteps[currentStep]?.icon}
+                </motion.div>
 
-              {/* Card Text */}
-              <motion.h3
-                className={`text-lg sm:text-xl font-orbit font-medium text-center px-4 sm:px-6 ${
-                  currentStep === 5 || currentStep === 6 
-                    ? 'text-white' 
-                    : 'text-gray-900'
-                } flex-1 break-words`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.4 }}
-              >
-                {timelineSteps[currentStep]?.cardText}
-              </motion.h3>
+                {/* Card Text */}
+                <motion.h3
+                  className={`text-lg sm:text-xl font-orbit font-medium ${
+                    currentStep === 5 || currentStep === 6 
+                      ? 'text-white' 
+                      : 'text-gray-900'
+                  } break-words`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.4 }}
+                >
+                  {timelineSteps[currentStep]?.cardText}
+                </motion.h3>
+              </div>
 
               {/* Footnote for card 2 */}
               {currentStep === 1 && (
