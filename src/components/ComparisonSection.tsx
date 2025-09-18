@@ -7,7 +7,7 @@ export default function ComparisonSection() {
             Take2 is NOT a dating app
           </h2>
           <p className="text-xl font-carlita text-neutral-600 max-w-3xl mx-auto">
-            See how we're different from everything you've tried before
+            See how we&apos;re different from everything you&apos;ve tried before
           </p>
         </div>
 

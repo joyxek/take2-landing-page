@@ -131,13 +131,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#6EE7B7" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} ${instrumentSerif.variable} ${carlito.variable} ${philosopher.variable} ${mulish.variable} ${lavishlyYours.variable} ${inter.variable} ${orbit.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} ${instrumentSerif.variable} ${carlito.variable} ${philosopher.variable} ${mulish.variable} ${lavishlyYours.variable} ${inter.variable} ${orbit.variable} ${gildaDisplay.variable} antialiased`}
       >
         {children}
       </body>

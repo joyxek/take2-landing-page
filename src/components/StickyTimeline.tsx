@@ -253,13 +253,13 @@ export default function StickyTimeline() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-lg font-inter text-gray-700 mb-4">
-              We'll say the quiet part out loud ...
+              We&apos;ll say the quiet part out loud ...
             </p>
             <p className="text-xl font-inter font-semibold text-gray-900 mb-8">
-              The dating apps don't care about your relationships goals. 
+              The dating apps don&apos;t care about your relationships goals. 
             </p>
             <p className="text-xl font-inter font-semibold text-gray-900 mb-8">
-              If they did, there wouldn't be this much friction just to go on a date.
+              If they did, there wouldn&apos;t be this much friction just to go on a date.
             </p>
             
             {/* Downward Arrow */}
