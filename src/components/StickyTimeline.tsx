@@ -111,6 +111,17 @@ export default function StickyTimeline() {
         
         {/* Carousel Section */}
         <div className="mb-16 md:mb-20">
+          <div className="text-center mb-8">
+            <motion.h3
+              className="text-2xl md:text-3xl font-orbit font-bold text-gray-900 mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              once we've received your application:
+            </motion.h3>
+          </div>
           {/* Desktop View - Show all cards */}
           <div className="hidden md:grid md:grid-cols-4 gap-6">
             {carouselCards.map((card, index) => (
@@ -135,7 +146,7 @@ export default function StickyTimeline() {
           <div className="md:hidden">
             <div className="relative">
               <motion.div
-                className="bg-gray-200 rounded-2xl p-6 h-64 flex flex-col mx-4"
+                className="bg-gray-200 rounded-2xl p-8 min-h-[16rem] flex flex-col mx-6"
                 key={`carousel-${currentCarouselIndex}`}
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -152,7 +163,7 @@ export default function StickyTimeline() {
               {/* Navigation Arrows */}
               <button
                 onClick={prevCarouselCard}
-                className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
+                className="absolute -left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -161,7 +172,7 @@ export default function StickyTimeline() {
 
               <button
                 onClick={nextCarouselCard}
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
+                className="absolute -right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
