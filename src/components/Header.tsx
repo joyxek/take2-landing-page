@@ -11,6 +11,13 @@ export default function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
       <motion.header 
@@ -21,19 +28,23 @@ export default function Header() {
       >
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           {/* Logo */}
-          <motion.div
+          <motion.button
+            onClick={scrollToTop}
+            className="cursor-pointer bg-transparent border-none p-2 relative z-50 pointer-events-auto"
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            aria-label="Return to top"
           >
             <Image
               src="/Take 2 Logo - Color copy.png"
               alt="Take2 Logo"
               width={350}
               height={75}
-              className="h-10 w-auto"
+              className="h-10 w-auto cursor-pointer"
               priority
             />
-          </motion.div>
+          </motion.button>
 
           {/* Hamburger Menu */}
           <motion.button
