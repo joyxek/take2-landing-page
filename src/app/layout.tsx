@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Caveat, Instrument_Serif, Carlito, Philosopher, Mulish, Lavishly_Yours, Inter, Orbit, Gilda_Display } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
