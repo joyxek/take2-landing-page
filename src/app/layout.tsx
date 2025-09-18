@@ -138,13 +138,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-      <link rel="icon" type="image/png" sizes="32x32" href="/profile-pic.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/profile-pic.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/profile-pic.png" />
-<link rel="manifest" href="/manifest.json" />
-<meta name="theme-color" content="#6EE7B7" />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} ${instrumentSerif.variable} ${carlito.variable} ${philosopher.variable} ${mulish.variable} ${lavishlyYours.variable} ${inter.variable} ${orbit.variable} ${gildaDisplay.variable} antialiased`}
       >
