@@ -51,7 +51,7 @@ export default function ComparisonSection() {
         <motion.div
           className="absolute w-96 h-96 rounded-full opacity-30 blur-3xl"
           style={{
-            background: `radial-gradient(circle, rgba(110, 231, 183, 0.4) 80%, rgba(59, 91, 195, 0.3) 90%, transparent 90%)`,
+            background: `radial-gradient(circle, rgba(110, 231, 183, 0.4) 60%, rgba(59, 91, 195, 0.3) 60%, transparent 70%)`,
             left: `${orbPosition.x}%`,
             top: `${orbPosition.y}%`,
           }}
@@ -60,7 +60,7 @@ export default function ComparisonSection() {
             top: `${orbPosition.y}%`,
           }}
           transition={{
-            duration: 0.2,
+            duration: 0.8,
             ease: "easeInOut"
           }}
         />

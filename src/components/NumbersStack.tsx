@@ -25,7 +25,7 @@ const stats = [
     bgImage: 'radial-gradient(circle at 70% 30%, rgba(212, 217, 183, 0.9) 0%, rgba(251, 146, 60, 0.4) 35%, rgba(197, 209, 167, 0.8) 100%)',
     details: {
       subtitle: 'Expanding Nationwide',
-      stats: ['Next: Austin', 'Then: Chicago', 'Goal: 15 cities by 2026']
+      stats: ['Next: LA', 'Then: DC', 'Goal: 15 cities by 2026']
     }
   },
   { 
