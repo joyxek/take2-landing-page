@@ -119,7 +119,7 @@ export default function StickyTimeline() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              once we've received your application:
+              once we&apos;ve received your application:
             </motion.h3>
           </div>
           {/* Desktop View - Show all cards */}
