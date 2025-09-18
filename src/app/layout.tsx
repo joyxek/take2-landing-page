@@ -87,7 +87,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Take2 - Meet People You're Actually Compatible With",
     description: "Skip the apps, skip the stress. Take2 is an invite-only dating event where singles in your city meet IRL.",
-    url: "https://take2.dating",
+    url: "https://take2.social",
     siteName: "Take2",
     images: [
       {
@@ -100,12 +100,20 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: "/profile-pic.png",               
+    shortcut: "/profile-pic.png",           
+    apple: "/profile-pic.png",      
+    other: [
+      { rel: "mask-icon", url: "/profile-pic.png", color: "#6EE7B7" },
+    ],
+  },
   twitter: {
     card: "summary_large_image",
     title: "Take2 - Meet People You're Actually Compatible With",
     description: "Skip the apps, skip the stress. Take2 is an invite-only dating event where singles in your city meet IRL.",
     images: ["/og-image.jpg"],
-    creator: "@take2dating",
+    creator: "@take2.social",
   },
   robots: {
     index: true,
