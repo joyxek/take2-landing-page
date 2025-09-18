@@ -45,7 +45,7 @@ export default function ComparisonSection() {
   }, []);
 
   return (
-    <section className="comparison-section relative py-20 overflow-hidden">
+    <section className="comparison-section relative py-20 overflow-hidden bg-white">
       {/* Animated Orb Background */}
       <div className="absolute inset-0">
         <motion.div

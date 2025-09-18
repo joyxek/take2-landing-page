@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 
 // Placeholder images - you can replace these with your actual image paths
 const carouselImages = [
@@ -19,6 +20,25 @@ const carouselImages = [
 
 export default function ImageCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set());
+  const [isInView, setIsInView] = useState(false);
+
+  // Preload images for better performance
+  useEffect(() => {
+    const preloadImages = () => {
+      carouselImages.forEach((src, index) => {
+        const img = new window.Image();
+        img.onload = () => {
+          setImagesLoaded(prev => new Set([...prev, index]));
+        };
+        img.src = src;
+      });
+    };
+
+    if (isInView) {
+      preloadImages();
+    }
+  }, [isInView]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,6 +50,10 @@ export default function ImageCarousel() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleInView = useCallback(() => {
+    setIsInView(true);
+  }, []);
+
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
@@ -38,6 +62,7 @@ export default function ImageCarousel() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          onViewportEnter={handleInView}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
@@ -61,20 +86,40 @@ export default function ImageCarousel() {
               }}
             >
               {/* Duplicate images for seamless loop */}
-              {[...carouselImages, ...carouselImages].map((image, index) => (
-                <motion.div
-                  key={`${image}-${index}`}
-                  className="flex-shrink-0 w-[300px] h-[300px] rounded-2xl overflow-hidden bg-gray-200 shadow-lg"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <img
-                    src={image}
-                    alt={`Take2 event ${(index % carouselImages.length) + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
-              ))}
+              {[...carouselImages, ...carouselImages].map((image, index) => {
+                const originalIndex = index % carouselImages.length;
+                const isLoaded = imagesLoaded.has(originalIndex);
+                const isVisible = Math.abs(index - currentIndex) <= 2 || Math.abs(index - (currentIndex + carouselImages.length)) <= 2;
+                
+                return (
+                  <motion.div
+                    key={`${image}-${index}`}
+                    className="flex-shrink-0 w-[300px] h-[300px] rounded-2xl overflow-hidden bg-gray-200 shadow-lg relative"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {/* Loading placeholder */}
+                    {!isLoaded && (
+                      <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+                        <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+                      </div>
+                    )}
+                    
+                    <Image
+                      src={image}
+                      alt={`Take2 event ${originalIndex + 1}`}
+                      fill
+                      className={`object-cover transition-opacity duration-300 ${
+                        isLoaded ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      priority={index < 3} // Prioritize first 3 images
+                      loading={isVisible ? 'eager' : 'lazy'}
+                      quality={85}
+                      sizes="(max-width: 768px) 280px, 300px"
+                    />
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
 
