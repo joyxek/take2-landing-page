@@ -3,28 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const carouselCards = [
-  {
-    id: 1,
-    title: "Your profile is reviewed by our Team",
-    description: "Our team personally reviews each application and places you in the right room based on preferences, compatibility, and intentions. Your profile stays active for future events even if you can’t make the first one."
-  },
-  {
-    id: 2,
-    title: "Matching work",
-    description: "We do the hard part. Leave it up to us to build the right-sized event, balance the room, and make sure everyone there belongs there."
-  },
-  {
-    id: 3,
-    title: "Tailored Event Experience",
-    description: "Imagine walking into a room where everyone’s already been vetted and chosen for you. We want to build you the kind of meet-cute moment you’ve been waiting for."
-  },
-  {
-    id: 4,
-    title: "Your $10 is a membership",
-    description: "Your profile stays active and you will continue creating events for as long as you want."
-  }
-];
+
 
 const timelineSteps = [
   {
@@ -93,13 +72,8 @@ export default function StickyTimeline() {
     }
   };
 
-  const nextCarouselCard = () => {
-    setCurrentCarouselIndex(prev => (prev + 1) % carouselCards.length);
-  };
 
-  const prevCarouselCard = () => {
-    setCurrentCarouselIndex(prev => (prev - 1 + carouselCards.length) % carouselCards.length);
-  };
+
 
   const handleApplyNow = () => {
     window.open('https://form.typeform.com/to/llHovcds', '_blank');
@@ -109,81 +83,10 @@ export default function StickyTimeline() {
     <div className="relative bg-white py-16 md:py-20 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         
-        {/* Carousel Section */}
-        <div className="mb-16 md:mb-20">
-          <div className="text-center mb-8">
-            <motion.h3
-              className="text-2xl md:text-3xl font-orbit font-bold text-gray-900 mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              once we&apos;ve received your application:
-            </motion.h3>
-          </div>
-          {/* Desktop View - Show all cards */}
-          <div className="hidden md:grid md:grid-cols-4 gap-6">
-            {carouselCards.map((card, index) => (
-              <motion.div
-                key={card.id}
-                className="bg-gray-200 rounded-2xl p-6 h-64 flex flex-col"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <h3 className="font-orbit font-semibold text-gray-900 text-sm mb-4 leading-tight">
-                  {card.title}
-                </h3>
-                <p className="font-inter text-xs text-gray-700 leading-relaxed flex-1">
-                  {card.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Mobile View - Carousel */}
-          <div className="md:hidden">
-            <div className="relative">
-              <motion.div
-                className="bg-gray-200 rounded-2xl p-8 min-h-[16rem] flex flex-col mx-6"
-                key={`carousel-${currentCarouselIndex}`}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <h3 className="font-orbit font-semibold text-gray-900 text-base mb-4 leading-tight">
-                  {carouselCards[currentCarouselIndex].title}
-                </h3>
-                <p className="font-inter text-sm text-gray-700 leading-relaxed flex-1">
-                  {carouselCards[currentCarouselIndex].description}
-                </p>
-              </motion.div>
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevCarouselCard}
-                className="absolute -left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-
-              <button
-                onClick={nextCarouselCard}
-                className="absolute -right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-            </div>
-
-            {/* Dots Indicator */}
+        
             
-          </div>
-        </div>
+          
+        
 
         {/* CTA under Carousel */}
         <div className="flex justify-center mb-12">
@@ -275,7 +178,7 @@ export default function StickyTimeline() {
                   currentStep === 5 || currentStep === 6 
                     ? 'text-white' 
                     : 'text-gray-900'
-                }`}
+                } flex-1 break-words`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
@@ -286,7 +189,7 @@ export default function StickyTimeline() {
               {/* Footnote for card 2 */}
               {currentStep === 1 && (
                 <motion.p
-                  className="absolute bottom-4 left-4 right-4 text-xs font-inter text-gray-500 text-center"
+                  className="absolute bottom-4 left-4 right-4 text-xs font-inter text-gray-500 text-center break-words"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.4 }}

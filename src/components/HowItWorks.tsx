@@ -23,17 +23,35 @@ const steps = [
     gradient: "from-teal-500 via-cyan-400 to-yellow-400",
     accentColor: "text-teal-300",
     bgPattern: "radial-gradient(circle at 70% 30%, rgba(255,255,255,0.2) 0%, transparent 50%), radial-gradient(circle at 30% 70%, rgba(255,255,255,0.15) 0%, transparent 50%)"
+  }
+];
+
+// Cards used in the follow-up carousel section
+const hwCarouselCards = [
+  {
+    id: 1,
+    title: "Your profile is reviewed by our Team",
+    description:
+      "Our team personally reviews each application and places you in the right room based on your application. Your profile stays active for future events even if you can’t make the first one.",
+  },
+  {
+    id: 2,
+    title: "Matching work",
+    description:
+      "We do the hard part. Leave it up to us to build the right-sized event, balance the room, and make sure everyone there belongs there.",
   },
   {
     id: 3,
-    title: "secure your spot and date IRL",
-    description: "We remove all the stress of dating logistics so you can focus on being yourself and dating IRL. Apply now, get matched, and secure your event just for $10.",
-    type: "cta",
-    icon: "✨",
-    gradient: "from-green-400 via-lime-400 to-yellow-300",
-    accentColor: "text-green-300",
-    bgPattern: "radial-gradient(circle at 40% 60%, rgba(255,255,255,0.2) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(255,255,255,0.15) 0%, transparent 50%)"
-  }
+    title: "Tailored Event Experience",
+    description:
+      "Imagine walking into a room where everyone’s already been vetted and chosen for you. We want to build you the kind of meet-cute moment you’ve been waiting for.",
+  },
+  {
+    id: 4,
+    title: "Your $10 is a membership",
+    description:
+      "Your profile stays active and we will place you in events for as long as you want.",
+  },
 ];
 
 // Form Selection Animation Component
@@ -165,6 +183,15 @@ const EmojiPeople = () => {
 };
 
 export default function HowItWorks() {
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  const nextCarouselCard = () => {
+    setCurrentCarouselIndex((prev) => (prev + 1) % hwCarouselCards.length);
+  };
+
+  const prevCarouselCard = () => {
+    setCurrentCarouselIndex((prev) => (prev - 1 + hwCarouselCards.length) % hwCarouselCards.length);
+  };
 
   return (
     <section className="py-20 bg-white">
@@ -241,20 +268,86 @@ export default function HowItWorks() {
                   </motion.div>
                 )}
                 
-                {step.type === 'cta' && (
-                  <motion.div
-                    className="text-6xl"
-                    initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                    whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 + (index * 0.2), type: "spring" }}
-                  >
-                    
-                  </motion.div>
-                )}
+                {/* Removed former CTA visual step */}
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Once we've received your application */}
+        <div className="mt-16 md:mt-20">
+          <div className="text-center mb-8">
+            <motion.h3
+              className="text-2xl md:text-3xl font-orbit font-bold text-gray-900 mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              once we&apos;ve received your application:
+            </motion.h3>
+          </div>
+
+          {/* Cards: desktop grid matches StickyTimeline */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+            {hwCarouselCards.map((card, index) => (
+              <motion.div
+                key={card.id}
+                className="bg-gray-200 rounded-2xl p-6 flex flex-col h-full overflow-hidden min-w-0"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <h4 className="font-orbit font-semibold text-gray-900 text-sm mb-4 leading-tight break-words hyphens-auto">
+                  {card.title}
+                </h4>
+                <p className="font-inter text-xs text-gray-700 leading-relaxed flex-1 break-words hyphens-auto">
+                  {card.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile View - Carousel copied from StickyTimeline */}
+          <div className="md:hidden">
+            <div className="relative">
+              <motion.div
+                className="bg-gray-200 rounded-2xl p-8 min-h-[16rem] flex flex-col mx-6"
+                key={`hw-carousel-${currentCarouselIndex}`}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <h4 className="font-orbit font-semibold text-gray-900 text-base mb-4 leading-tight">
+                  {hwCarouselCards[currentCarouselIndex].title}
+                </h4>
+                <p className="font-inter text-sm text-gray-700 leading-relaxed flex-1">
+                  {hwCarouselCards[currentCarouselIndex].description}
+                </p>
+              </motion.div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevCarouselCard}
+                className="absolute -left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              <button
+                onClick={nextCarouselCard}
+                className="absolute -right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            {/* Dots Indicator intentionally omitted to match StickyTimeline current design */}
+          </div>
         </div>
       </div>
     </section>
