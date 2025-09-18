@@ -84,7 +84,7 @@ export default function NumbersStack() {
       </div>
       <div className="max-w-md mx-auto px-6">
         <motion.h2 
-          className="text-4xl md:text-5xl font-orbit font-bold text-gray-900 mb-16 text-center"
+          className="text-4xl md:text-5xl font-gilda-display font-bold text-gray-900 mb-16 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

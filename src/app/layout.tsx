@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Caveat, Instrument_Serif, Carlito, Philosopher, Mulish, Lavishly_Yours, Inter, Orbit } from "next/font/google";
+import { Geist, Geist_Mono, Caveat, Instrument_Serif, Carlito, Philosopher, Mulish, Lavishly_Yours, Inter, Orbit, Gilda_Display } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -64,6 +64,13 @@ const inter = Inter({
 
 const orbit = Orbit({
   variable: "--font-orbit",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const gildaDisplay = Gilda_Display({
+  variable: "--font-gilda-display",
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",

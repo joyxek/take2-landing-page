@@ -69,7 +69,7 @@ export default function ComparisonSection() {
       <div className="relative z-10 max-w-4xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-orbit text-primary mb-4">
+          <h2 className="text-4xl md:text-5xl font-gilda-display text-primary mb-4">
             Take2 is NOT a dating app
           </h2>
           <p className="text-lg font-inter text-gray-600 max-w-2xl mx-auto">

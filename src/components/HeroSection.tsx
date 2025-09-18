@@ -35,15 +35,15 @@ export default function HeroSection() {
 
         {/* Main Headline */}
         <motion.h1
-          className="text-4xl md:text-5xl font-orbit font-bold text-gray-900 leading-tight mb-6"
+          className="text-4xl md:text-5xl font-gilda-display font-bold text-gray-900 leading-tight mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          meet people you&apos;re{' '}
+          Meet people you&apos;re{' '}
           <span className="block">
             <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-black">
-              ACTUALLY
+              <em>ACTUALLY</em>
             </span>
           </span>
           <span className="block">

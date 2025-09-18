@@ -41,7 +41,7 @@ export default function ImageCarousel() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl md:text-4xl font-orbit font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-gilda-display font-bold text-gray-900 mb-4">
             This is our first time doing this.
           </h2>
         </motion.div>
@@ -106,7 +106,7 @@ export default function ImageCarousel() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 2.0 }}
         >
-          <h2 className="text-3xl md:text-4xl font-orbit font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-gilda-display font-bold text-gray-900 mb-4">
             Well... the applications, not the dating events.
           </h2>
         </motion.div>
