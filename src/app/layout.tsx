@@ -129,6 +129,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} ${instrumentSerif.variable} ${carlito.variable} ${philosopher.variable} ${mulish.variable} ${lavishlyYours.variable} ${inter.variable} ${orbit.variable} ${gildaDisplay.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
