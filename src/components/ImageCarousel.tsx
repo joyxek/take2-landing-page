@@ -113,7 +113,6 @@ export default function ImageCarousel() {
                         isLoaded ? 'opacity-100' : 'opacity-0'
                       }`}
                       priority={index < 3} // Prioritize first 3 images
-                      loading={isVisible ? 'eager' : 'lazy'}
                       quality={85}
                       sizes="(max-width: 768px) 280px, 300px"
                     />
