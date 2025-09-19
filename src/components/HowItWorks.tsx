@@ -45,13 +45,7 @@ const hwCarouselCards = [
     title: "Tailored Event Experience",
     description:
       "Imagine walking into a room where everyone’s already been vetted and chosen for you. We want to build you the kind of meet-cute moment you’ve been waiting for.",
-  },
-  {
-    id: 4,
-    title: "Your $10 is a membership",
-    description:
-      "Your profile stays active and we will place you in events for as long as you want.",
-  },
+  }
 ];
 
 // Form Selection Animation Component
@@ -194,7 +188,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section id="how-it-works" className="py-20 bg-white">
       <div className="max-w-4xl mx-auto px-6">
         {/* Section Header */}
         <motion.div 
@@ -288,8 +282,11 @@ export default function HowItWorks() {
             </motion.h3>
           </div>
 
-          {/* Cards: desktop grid matches StickyTimeline */}
-          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          {/* Cards: desktop grid reflects current card count */}
+          <div
+            className="hidden md:grid gap-6 items-stretch"
+            style={{ gridTemplateColumns: `repeat(${Math.max(hwCarouselCards.length, 2)}, minmax(0, 1fr))` }}
+          >
             {hwCarouselCards.map((card, index) => (
               <motion.div
                 key={card.id}
