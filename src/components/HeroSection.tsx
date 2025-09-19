@@ -42,8 +42,8 @@ export default function HeroSection() {
         >
           Meet people you&apos;re{' '}
           <span className="block">
-            <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-black">
-              <em>ACTUALLY</em>
+            <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-mulish font-black inline-block pr-1">
+              ACTUALLY
             </span>
           </span>
           <span className="block">
