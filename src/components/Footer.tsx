@@ -28,7 +28,7 @@ export default function Footer() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-3xl font-orbit font-bold mb-4 text-gray-900">Skip our application and join the traditional way</h3>
+          <h3 className="text-3xl font-orbit font-bold mb-4 text-gray-900">Feeling spontaneous? Join an event now.</h3>
           <p className="font-inter text-gray-600 mb-6 max-w-2xl mx-auto">
             Check out upcoming Take2 events in your city and RSVP directly.
           </p>
