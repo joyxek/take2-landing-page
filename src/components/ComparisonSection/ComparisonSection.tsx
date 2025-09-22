@@ -9,6 +9,7 @@ const checkmarkPoints = [
   "1 Simple Application to join the right Take2 event.",
   "Skip everything: swiping, texting, matching, planning, scheduling, asking them out.",
   "Ghosting is impossible.",
+  "$10 to get matchmade into the right event.",
   "Multiple introductions in one event.",
   "Matchmaking happens privately - no need to ask them out."
 ];
