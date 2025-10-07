@@ -76,7 +76,7 @@ export default function StickyTimeline() {
 
 
   const handleApplyNow = () => {
-    window.open('https://form.typeform.com/to/llHovcds', '_blank');
+    window.open('https://form.typeform.com/to/pDkrBtdV', '_blank');
   };
 
   return (

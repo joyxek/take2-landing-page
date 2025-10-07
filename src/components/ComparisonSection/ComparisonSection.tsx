@@ -113,7 +113,7 @@ export default function ComparisonSection() {
           transition={{ duration: 0.6, delay: 2.0 }}
         >
           <motion.button
-            onClick={() => window.open('https://form.typeform.com/to/llHovcds', '_blank')}
+            onClick={() => window.open('https://form.typeform.com/to/pDkrBtdV', '_blank')}
             className="bg-[#3b5bc3] hover:bg-[#2d4aa3] text-white font-inter  px-8 py-3 rounded-full text-base shadow-lg transition-all duration-200"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

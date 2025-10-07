@@ -7,7 +7,7 @@ export default function ApplyPage() {
     // TODO: Replace with actual Take2 application form URL
     // Example: window.location.href = 'https://airtable.com/shrXXXXXXXXXXXXXX';
     // Or: window.location.href = 'https://typeform.com/to/XXXXXXXXX';
-    window.location.href = 'https://forms.gle/REPLACE-WITH-ACTUAL-TAKE2-FORM-ID';
+    window.location.href = 'https://form.typeform.com/to/pDkrBtdV';
   }, []);
 
   return (
@@ -25,7 +25,7 @@ export default function ApplyPage() {
         <p className="text-sm font-carlita text-neutral-500">
           If you&apos;re not redirected automatically, 
           <a 
-            href="https://forms.gle/REPLACE-WITH-ACTUAL-TAKE2-FORM-ID" 
+            href="https://form.typeform.com/to/pDkrBtdV" 
             className="text-primary hover:underline ml-1"
           >
             click here
