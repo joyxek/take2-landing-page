@@ -11,9 +11,9 @@ const PHOTOS = [
 export default function Home() {
   return (
     <>
-<a className="banner" href="https://luma.com/take2-zrnc" target="_blank" rel="noopener">
-  <span>Take2 is back in NYC. Our new season starts October 15.</span>
-  <span className="banner-cta">Get tickets <span aria-hidden="true">→</span></span>
+<a className="banner" href="https://luma.com/take2" target="_blank" rel="noopener">
+  <span>October 15 is sold out. Next up: November 5.</span>
+  <span className="banner-cta">Get notified <span aria-hidden="true">→</span></span>
 </a>
 
 <header className="hero" id="top">
@@ -37,10 +37,6 @@ export default function Home() {
     <p>Curated in-person events for NYC singles who still believe in the meet-cute. No swiping, and no pressure to get the first impression right.</p>
     <a className="btn btn-green" href="https://luma.com/take2" target="_blank" rel="noopener">Find an Event <span aria-hidden="true">→</span></a>
     <a className="hero-link" href="https://luma.com/take2" target="_blank" rel="noopener">Join the list for first access</a>
-  </div>
-
-  <div className="hero-wordmark" aria-hidden="true">
-    <img src="/assets/take2-wordmark-green.png" alt="" width="641" height="275" />
   </div>
 </header>
 
@@ -102,43 +98,48 @@ export default function Home() {
         <h2 className="serif-xl">This season at Take2</h2>
       </div>
 
+      <div className="events-note">
+        <p>Tickets are released 2 weeks before each event. Subscribers get early bird pricing.</p>
+        <a href="https://luma.com/take2" target="_blank" rel="noopener">Subscribe to the calendar <span aria-hidden="true">→</span></a>
+      </div>
+
       <article className="feature">
         <img src="/assets/cheers.jpg" alt="Guests talking at tables during a Take2 event" width="1400" height="933" />
         <div className="feature-body">
-          <div className="tags"><span className="tag tag-live">Tickets live</span><span className="tag">Early bird through Oct 8</span></div>
-          <p className="feature-month">October</p>
-          <h3>Mix and Repeat</h3>
-          <p>Like a night out at the bar with your friends, but the room is full of singles. Come single, or come as a single friend's +1. Just not if it's complicated. Our biggest mixer yet.</p>
-          <p className="feature-meta">October 15, 2026 · Williamsburg</p>
-          <a className="btn" href="https://luma.com/take2-zrnc" target="_blank" rel="noopener">Get tickets <span aria-hidden="true">→</span></a>
+          <div className="tags"><span className="tag tag-live">Next up</span><span className="tag">Tickets out Oct 22</span></div>
+          <p className="feature-month">November 5</p>
+          <h3>Singles and Friends Mixer</h3>
+          <p>Like a night out at the bar with your friends, but the room is full of singles. Come single, or come as a single friend's +1.</p>
+          <p className="feature-meta">Thursday, November 5, 2026</p>
+          <a className="btn" href="https://luma.com/take2" target="_blank" rel="noopener">Get early access <span aria-hidden="true">→</span></a>
         </div>
       </article>
 
-      <div className="cards">
+      <div className="cards cards-3">
         <article className="card">
-          <p className="card-month">November</p>
-          <h3>Mix and Repeat</h3>
-          <p>Missed the first one? We're doing it again.</p>
-          <a href="https://luma.com/take2" target="_blank" rel="noopener">Coming soon · Get notified →</a>
+          <p className="card-month">Thursday, November 12</p>
+          <h3>Singles and Friends Mixer</h3>
+          <p>Like a night out at the bar with your friends, but the room is full of singles. Come single, or come as a single friend's +1.</p>
+          <a href="https://luma.com/take2" target="_blank" rel="noopener">Tickets out Oct 29 · Get notified →</a>
         </article>
         <article className="card">
-          <p className="card-month">November</p>
-          <h3>First and Second Date</h3>
-          <p>Our signature two-part experience: meet once, then meet again a week later.</p>
-          <a href="https://luma.com/take2" target="_blank" rel="noopener">Coming soon · Get notified →</a>
+          <p className="card-month">Friday, November 13</p>
+          <h3>Singles and Friends Mixer</h3>
+          <p>Like a night out at the bar with your friends, but the room is full of singles. Come single, or come as a single friend's +1.</p>
+          <a href="https://luma.com/take2" target="_blank" rel="noopener">Tickets out Oct 30 · Get notified →</a>
         </article>
         <article className="card">
-          <p className="card-month">December</p>
-          <h3>First and Second Date</h3>
-          <p>Our two-part series is back for one more round before the year ends.</p>
-          <a href="https://luma.com/take2" target="_blank" rel="noopener">Coming soon · Get notified →</a>
+          <p className="card-month">Thursday, November 19</p>
+          <h3>Singles Only Speed Dating</h3>
+          <p>Singles only. A night of short one-on-one dates, scheduled for you, so you meet everyone in the room.</p>
+          <a href="https://luma.com/take2" target="_blank" rel="noopener">Tickets out Nov 5 · Get notified →</a>
         </article>
-        <article className="card">
-          <p className="card-month">December</p>
-          <h3>Winter Mixer</h3>
-          <p>Close out the year with the people you'll want to see again.</p>
-          <a href="https://luma.com/take2" target="_blank" rel="noopener">Coming soon · Get notified →</a>
-        </article>
+      </div>
+
+      <div className="past-event">
+        <span className="past-date">October 15</span>
+        <span className="past-name">Mix and Repeat · Williamsburg</span>
+        <span className="tag tag-soldout">Sold out</span>
       </div>
     </div>
   </section>
@@ -167,7 +168,7 @@ export default function Home() {
           <p className="eyebrow">From our last event</p>
           <h2 className="serif-lg">Real people, real rooms, real meet-cutes.</h2>
         </div>
-        <a className="link" href="https://luma.com/take2-zrnc" target="_blank" rel="noopener">See you at the next one →</a>
+        <a className="link" href="https://luma.com/take2" target="_blank" rel="noopener">See you at the next one →</a>
       </div>
       <div className="gallery">
         {PHOTOS.map((p, i) => (
