@@ -99,7 +99,7 @@ export default function Home() {
       </div>
 
       <div className="events-note">
-        <p>Tickets are released 2 weeks before each event. Newsletter subscribers get early bird pricing.</p>
+        <p>Tickets are released 2 weeks before each event. Subscribers get early bird pricing.</p>
         <a href="https://luma.com/take2" target="_blank" rel="noopener">Subscribe to the calendar <span aria-hidden="true">→</span></a>
       </div>
 
