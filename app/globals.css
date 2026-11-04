@@ -200,3 +200,5 @@ h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
   .wrap { padding: 0 20px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+.card .card-full { color: #c9d2ef; font-weight: 700; font-size: 0.85rem; opacity: .8; }
+.feature-full { font-weight: 700; color: #6b7280; margin-top: 8px; }
