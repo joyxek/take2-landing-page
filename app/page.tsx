@@ -1,4 +1,6 @@
 // Take2 landing page
+// Events, banner and ticket note come from Notion (see app/content.ts).
+import { getEvents, getSettings, todayNY, fmtMonthDay, fmtWeekdayMonthDay, fmtFull, fmtShort, LUMA_URL, type SiteEvent } from "./content";
 // To change event photos, replace the files in /public/assets/photos and update the list below.
 const PHOTOS = [
   { src: "/assets/photos/speed-dating.jpg", alt: "Guests speed dating at numbered tables" },
@@ -8,13 +10,37 @@ const PHOTOS = [
   { src: "/assets/photos/gallery-room.jpg", alt: "A bright room full of Take2 guests at tables" },
 ];
 
-export default function Home() {
+export const revalidate = 60;
+
+const featureTag = (e: SiteEvent) =>
+  e.status === "Sold out" ? "Sold out" : e.status === "On sale" ? "On sale" : e.ticketsRelease ? `Tickets out ${fmtShort(e.ticketsRelease)}` : "Coming soon";
+
+const featureButton = (e: SiteEvent) =>
+  e.buttonText || (e.status === "On sale" ? "Get tickets" : e.status === "Sold out" ? "Join the waitlist" : "Get early access");
+
+const cardLink = (e: SiteEvent) => {
+  if (e.buttonText) return `${e.buttonText} →`;
+  if (e.status === "On sale") return "On sale · Get tickets →";
+  if (e.status === "Sold out") return "Sold out · Join the waitlist →";
+  return e.ticketsRelease ? `Tickets out ${fmtShort(e.ticketsRelease)} · Get notified →` : "Coming soon · Get notified →";
+};
+
+export default async function Home() {
+  const [events, settings] = await Promise.all([getEvents(), getSettings()]);
+  const today = todayNY();
+  const upcoming = events.filter((e) => e.date >= today);
+  const past = events.filter((e) => e.date < today).reverse().slice(0, 3);
+  const feature = upcoming.find((e) => e.featured) ?? upcoming[0];
+  const rest = upcoming.filter((e) => e !== feature);
+
   return (
     <>
-<a className="banner" href="https://luma.com/take2" target="_blank" rel="noopener">
-  <span>October 15 is sold out. Next up: November 5.</span>
-  <span className="banner-cta">Get notified <span aria-hidden="true">→</span></span>
+{settings.banner && (
+<a className="banner" href={settings.banner.link} target="_blank" rel="noopener">
+  <span>{settings.banner.text}</span>
+  {settings.banner.button && <span className="banner-cta">{settings.banner.button} <span aria-hidden="true">→</span></span>}
 </a>
+)}
 
 <header className="hero" id="top">
   <img className="hero-bg" src="/assets/hero.jpg" alt="" width="2400" height="1600" />
@@ -98,49 +124,52 @@ export default function Home() {
         <h2 className="serif-xl">This season at Take2</h2>
       </div>
 
+      {settings.ticketNote && (
       <div className="events-note">
-        <p>Tickets are released 2 weeks before each event. Subscribers get early bird pricing.</p>
-        <a href="https://luma.com/take2" target="_blank" rel="noopener">Subscribe to the calendar <span aria-hidden="true">→</span></a>
+        <p>{settings.ticketNote}</p>
+        <a href={LUMA_URL} target="_blank" rel="noopener">Subscribe to the calendar <span aria-hidden="true">→</span></a>
       </div>
+      )}
 
+      {feature ? (
       <article className="feature">
         <img src="/assets/cheers.jpg" alt="Guests talking at tables during a Take2 event" width="1400" height="933" />
         <div className="feature-body">
-          <div className="tags"><span className="tag tag-live">Next up</span><span className="tag">Tickets out Oct 22</span></div>
-          <p className="feature-month">November 5</p>
-          <h3>Singles and Friends Mixer</h3>
-          <p>Like a night out at the bar with your friends, but the room is full of singles. Come single, or come as a single friend's +1.</p>
-          <p className="feature-meta">Thursday, November 5, 2026</p>
-          <a className="btn" href="https://luma.com/take2" target="_blank" rel="noopener">Get early access <span aria-hidden="true">→</span></a>
+          <div className="tags"><span className="tag tag-live">Next up</span><span className="tag">{featureTag(feature)}</span></div>
+          <p className="feature-month">{fmtMonthDay(feature.date)}</p>
+          <h3>{feature.name}</h3>
+          {feature.description && <p>{feature.description}</p>}
+          <p className="feature-meta">{fmtFull(feature.date)}</p>
+          <a className="btn" href={feature.link} target="_blank" rel="noopener">{featureButton(feature)} <span aria-hidden="true">→</span></a>
         </div>
       </article>
+      ) : (
+      <div className="events-note">
+        <p>New dates are coming soon.</p>
+        <a href={LUMA_URL} target="_blank" rel="noopener">Subscribe to the calendar <span aria-hidden="true">→</span></a>
+      </div>
+      )}
 
+      {rest.length > 0 && (
       <div className="cards cards-3">
-        <article className="card">
-          <p className="card-month">Thursday, November 12</p>
-          <h3>Singles and Friends Mixer</h3>
-          <p>Like a night out at the bar with your friends, but the room is full of singles. Come single, or come as a single friend's +1.</p>
-          <a href="https://luma.com/take2" target="_blank" rel="noopener">Tickets out Oct 29 · Get notified →</a>
+        {rest.map((e) => (
+        <article className="card" key={`${e.date}-${e.name}`}>
+          <p className="card-month">{fmtWeekdayMonthDay(e.date)}</p>
+          <h3>{e.name}</h3>
+          {e.description && <p>{e.description}</p>}
+          <a href={e.link} target="_blank" rel="noopener">{cardLink(e)}</a>
         </article>
-        <article className="card">
-          <p className="card-month">Friday, November 13</p>
-          <h3>Singles and Friends Mixer</h3>
-          <p>Like a night out at the bar with your friends, but the room is full of singles. Come single, or come as a single friend's +1.</p>
-          <a href="https://luma.com/take2" target="_blank" rel="noopener">Tickets out Oct 30 · Get notified →</a>
-        </article>
-        <article className="card">
-          <p className="card-month">Thursday, November 19</p>
-          <h3>Singles Only Speed Dating</h3>
-          <p>Singles only. A night of short one-on-one dates, scheduled for you, so you meet everyone in the room.</p>
-          <a href="https://luma.com/take2" target="_blank" rel="noopener">Tickets out Nov 5 · Get notified →</a>
-        </article>
+        ))}
       </div>
+      )}
 
-      <div className="past-event">
-        <span className="past-date">October 15</span>
-        <span className="past-name">Mix and Repeat · Williamsburg</span>
-        <span className="tag tag-soldout">Sold out</span>
+      {past.map((e) => (
+      <div className="past-event" key={`${e.date}-${e.name}`}>
+        <span className="past-date">{fmtMonthDay(e.date)}</span>
+        <span className="past-name">{e.name}{e.location ? ` · ${e.location}` : ""}</span>
+        {e.status === "Sold out" && <span className="tag tag-soldout">Sold out</span>}
       </div>
+      ))}
     </div>
   </section>
 
