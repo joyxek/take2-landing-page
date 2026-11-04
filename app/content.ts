@@ -2,7 +2,7 @@
 // Content is read from the "Take2 Website" page in Notion (Events + Site Settings tables).
 // If Notion is unreachable or NOTION_TOKEN is missing, the fallback content below is used.
 
-export type EventStatus = "Coming soon" | "On sale" | "Sold out" | "Hidden";
+export type EventStatus = "Coming soon" | "On sale" | "Sold out" | "Waitlist full" | "Hidden";
 
 export type SiteEvent = {
   name: string;

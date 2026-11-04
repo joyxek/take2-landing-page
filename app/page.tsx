@@ -12,8 +12,10 @@ const PHOTOS = [
 
 export const revalidate = 60;
 
+const isSoldOut = (e: SiteEvent) => e.status === "Sold out" || e.status === "Waitlist full";
+
 const featureTag = (e: SiteEvent) =>
-  e.status === "Sold out" ? "Sold out" : e.status === "On sale" ? "On sale" : e.ticketsRelease ? `Tickets out ${fmtShort(e.ticketsRelease)}` : "Coming soon";
+  isSoldOut(e) ? "Sold out" : e.status === "On sale" ? "On sale" : e.ticketsRelease ? `Tickets out ${fmtShort(e.ticketsRelease)}` : "Coming soon";
 
 const featureButton = (e: SiteEvent) =>
   e.buttonText || (e.status === "On sale" ? "Get tickets" : e.status === "Sold out" ? "Join the waitlist" : "Get early access");
@@ -22,6 +24,7 @@ const cardLink = (e: SiteEvent) => {
   if (e.buttonText) return `${e.buttonText} →`;
   if (e.status === "On sale") return "On sale · Get tickets →";
   if (e.status === "Sold out") return "Sold out · Join the waitlist →";
+  if (e.status === "Waitlist full") return "Sold out · Waitlist full";
   return e.ticketsRelease ? `Tickets out ${fmtShort(e.ticketsRelease)} · Get notified →` : "Coming soon · Get notified →";
 };
 
@@ -140,7 +143,11 @@ export default async function Home() {
           <h3>{feature.name}</h3>
           {feature.description && <p>{feature.description}</p>}
           <p className="feature-meta">{fmtFull(feature.date)}</p>
+          {feature.status === "Waitlist full" && !feature.buttonText ? (
+          <p className="feature-full">Sold out. The waitlist is full.</p>
+          ) : (
           <a className="btn" href={feature.link} target="_blank" rel="noopener">{featureButton(feature)} <span aria-hidden="true">→</span></a>
+          )}
         </div>
       </article>
       ) : (
@@ -157,7 +164,11 @@ export default async function Home() {
           <p className="card-month">{fmtWeekdayMonthDay(e.date)}</p>
           <h3>{e.name}</h3>
           {e.description && <p>{e.description}</p>}
+          {e.status === "Waitlist full" && !e.buttonText ? (
+          <span className="card-full">{cardLink(e)}</span>
+          ) : (
           <a href={e.link} target="_blank" rel="noopener">{cardLink(e)}</a>
+          )}
         </article>
         ))}
       </div>
@@ -167,7 +178,7 @@ export default async function Home() {
       <div className="past-event" key={`${e.date}-${e.name}`}>
         <span className="past-date">{fmtMonthDay(e.date)}</span>
         <span className="past-name">{e.name}{e.location ? ` · ${e.location}` : ""}</span>
-        {e.status === "Sold out" && <span className="tag tag-soldout">Sold out</span>}
+        {isSoldOut(e) && <span className="tag tag-soldout">Sold out</span>}
       </div>
       ))}
     </div>
