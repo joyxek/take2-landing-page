@@ -138,3 +138,33 @@ export const fmtFull = (d: string) =>
   asDate(d).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
 export const fmtShort = (d: string) =>
   asDate(d).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+
+/* ---------- Site copy ---------- */
+
+import { COPY_DEFAULTS } from "./copy";
+
+const COPY_DB = process.env.NOTION_COPY_DB_ID || "6fac5e1c97624dc3a0a93d172724b2d1";
+
+export type Copy = { t: (key: string, vars?: Record<string, string>) => string; href: (key: string) => string };
+
+export async function getCopy(): Promise<Copy> {
+  const rows = (await queryNotion(COPY_DB)) ?? [];
+  const text = new Map<string, string>();
+  const links = new Map<string, string>();
+  for (const r of rows) {
+    const key = plain(r.properties["Key"]);
+    if (!key) continue;
+    const value = plain(r.properties["Text"]);
+    if (value) text.set(key, value);
+    const url = r.properties["Link"]?.url;
+    if (url) links.set(key, url);
+  }
+  return {
+    t: (key, vars) => {
+      let s = text.get(key) ?? COPY_DEFAULTS[key]?.text ?? "";
+      if (vars) for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(v);
+      return s;
+    },
+    href: (key) => links.get(key) ?? COPY_DEFAULTS[key]?.link ?? LUMA_URL,
+  };
+}
