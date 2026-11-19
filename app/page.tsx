@@ -1,6 +1,8 @@
 // Take2 landing page
 // Events, banner and ticket note come from Notion (see app/content.ts).
-import { getEvents, getSettings, getCopy, type Copy, todayNY, fmtMonthDay, fmtWeekdayMonthDay, fmtFull, fmtShort, LUMA_URL, type SiteEvent } from "./content";
+import { getSettings, getCopy } from "./content";
+
+const LUMA_EMBED_URL = "https://luma.com/embed/calendar/cal-zgGcKswZRqDTOo3/events";
 // To change event photos, replace the files in /public/assets/photos and update the list below.
 const PHOTOS = [
   { src: "/assets/photos/speed-dating.jpg", alt: "Guests speed dating at numbered tables" },
@@ -12,32 +14,8 @@ const PHOTOS = [
 
 export const revalidate = 60;
 
-const isSoldOut = (e: SiteEvent) => e.status === "Sold out" || e.status === "Waitlist full";
-
-const featureTag = (e: SiteEvent, c: Copy) =>
-  isSoldOut(e) ? c.t("events.tag.soldout")
-  : e.status === "On sale" ? c.t("events.tag.onsale")
-  : e.ticketsRelease ? c.t("events.tag.ticketsout", { date: fmtShort(e.ticketsRelease) })
-  : c.t("events.tag.comingsoon");
-
-const featureButton = (e: SiteEvent, c: Copy) =>
-  e.buttonText || (e.status === "On sale" ? c.t("events.btn.onsale") : e.status === "Sold out" ? c.t("events.btn.soldout") : c.t("events.btn.comingsoon"));
-
-const cardLink = (e: SiteEvent, c: Copy) => {
-  if (e.buttonText) return `${e.buttonText} →`;
-  if (e.status === "On sale") return `${c.t("events.card.onsale")} →`;
-  if (e.status === "Sold out") return `${c.t("events.card.soldout")} →`;
-  if (e.status === "Waitlist full") return c.t("events.card.waitlistfull");
-  return e.ticketsRelease ? `${c.t("events.card.ticketsout", { date: fmtShort(e.ticketsRelease) })} →` : `${c.t("events.card.comingsoon")} →`;
-};
-
 export default async function Home() {
-  const [events, settings, c] = await Promise.all([getEvents(), getSettings(), getCopy()]);
-  const today = todayNY();
-  const upcoming = events.filter((e) => e.date >= today);
-  const past = events.filter((e) => e.date < today).reverse().slice(0, 3);
-  const feature = upcoming.find((e) => e.featured) ?? upcoming[0];
-  const rest = upcoming.filter((e) => e !== feature);
+  const [settings, c] = await Promise.all([getSettings(), getCopy()]);
 
   return (
     <>
@@ -137,53 +115,9 @@ export default async function Home() {
       </div>
       )}
 
-      {feature ? (
-      <article className="feature">
-        <img src="/assets/cheers.jpg" alt="Guests talking at tables during a Take2 event" width="1400" height="933" />
-        <div className="feature-body">
-          <div className="tags"><span className="tag tag-live">{c.t("events.tag.next")}</span><span className="tag">{featureTag(feature, c)}</span></div>
-          <p className="feature-month">{fmtMonthDay(feature.date)}</p>
-          <h3>{feature.name}</h3>
-          {feature.description && <p>{feature.description}</p>}
-          <p className="feature-meta">{fmtFull(feature.date)}</p>
-          {feature.status === "Waitlist full" && !feature.buttonText ? (
-          <p className="feature-full">{c.t("events.btn.waitlistfull")}</p>
-          ) : (
-          <a className="btn" href={feature.link} target="_blank" rel="noopener">{featureButton(feature, c)} <span aria-hidden="true">→</span></a>
-          )}
-        </div>
-      </article>
-      ) : (
-      <div className="events-note">
-        <p>{c.t("events.empty")}</p>
-        <a href={c.href("events.subscribe")} target="_blank" rel="noopener">{c.t("events.subscribe")} <span aria-hidden="true">→</span></a>
+      <div className="luma-embed">
+        <iframe src={LUMA_EMBED_URL} title="Upcoming Take2 events on Luma" loading="lazy" allowFullScreen></iframe>
       </div>
-      )}
-
-      {rest.length > 0 && (
-      <div className="cards cards-3">
-        {rest.map((e) => (
-        <article className="card" key={`${e.date}-${e.name}`}>
-          <p className="card-month">{fmtWeekdayMonthDay(e.date)}</p>
-          <h3>{e.name}</h3>
-          {e.description && <p>{e.description}</p>}
-          {e.status === "Waitlist full" && !e.buttonText ? (
-          <span className="card-full">{cardLink(e, c)}</span>
-          ) : (
-          <a href={e.link} target="_blank" rel="noopener">{cardLink(e, c)}</a>
-          )}
-        </article>
-        ))}
-      </div>
-      )}
-
-      {past.map((e) => (
-      <div className="past-event" key={`${e.date}-${e.name}`}>
-        <span className="past-date">{fmtMonthDay(e.date)}</span>
-        <span className="past-name">{e.name}{e.location ? ` · ${e.location}` : ""}</span>
-        {isSoldOut(e) && <span className="tag tag-soldout">{c.t("events.tag.soldout")}</span>}
-      </div>
-      ))}
     </div>
   </section>
 
