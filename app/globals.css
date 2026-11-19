@@ -202,3 +202,6 @@ h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
 .card .card-full { color: #c9d2ef; font-weight: 700; font-size: 0.85rem; opacity: .8; }
 .feature-full { font-weight: 700; color: #6b7280; margin-top: 8px; }
+.luma-embed { margin-top: 28px; background: #f8f8f8; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+.luma-embed iframe { display: block; width: 100%; height: 780px; border: 0; background: #f8f8f8; color-scheme: light; }
+@media (max-width: 700px) { .luma-embed iframe { height: 640px; } }
